@@ -1,0 +1,17 @@
+<script>
+    function irAGenero(genero) {
+        window.location = "/WebMovil/SMovil?accion=consultarGenero&genero=" + encodeURIComponent(genero);
+    }
+    function irAPerfil(nickname) {
+        window.location = "/WebMovil/SMovil?accion=consultarArtista&nick=" + encodeURIComponent(nickname);
+    }
+
+    function ConsultaAlbum(nick, nomAlbum) {
+        window.location = "/WebMovil/SMovil?accion=consultarAlbum&nickArtista=" + encodeURIComponent(nick) + "&nomAlbum=" + encodeURIComponent(nomAlbum);
+    }
+    function Descarga(Ruta) {
+        window.location = "/WebMovil/DownloadFile?Ruta=" + Ruta;
+
+    }
+
+</script>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="http://localhost:1234/movil?wsdl" uri="src/conf/xml-resources/web-services/Movil/wsdl/localhost_1234/movil.wsdl"/>
+    <system systemId="http://localhost:1234/movil?xsd=1" uri="src/conf/xml-resources/web-services/Movil/wsdl/localhost_1234/movil.xsd_1.xsd"/>
+    <system systemId="http://localhost:1234/downloadfile?wsdl" uri="src/conf/xml-resources/web-services/DownloadFile/wsdl/localhost_1234/downloadfile.wsdl"/>
+</catalog>
