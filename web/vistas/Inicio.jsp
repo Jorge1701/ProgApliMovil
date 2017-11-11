@@ -38,10 +38,13 @@
                 background-color: #4CAF50;
                 color: white;
             }
-    
-        </style>  }
 
+        </style>  }
+        <%
+            DtUsuario user = (DtUsuario) request.getSession().getAttribute("usuario");
+        %>
     </head>
+
     <body style="background-color: black">
         <!-- Static navbar -->
         <nav class="navbar navbar-inverse navbar-fixed-top"  style="background-color: black">
@@ -53,7 +56,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#" style="color: greenyellow">Bienvenido Brian</a>
+                    <a class="navbar-brand" href="#" style="color: greenyellow">Bienvenido <%= user.getNickname()%></a>
                 </div>
                 <!-- Nav tabs -->
                 <div id="navbar" class="navbar-collapse collapse">
@@ -64,10 +67,6 @@
                         <li class="nav-item">
                             <a class="nav-link" data-toggle="tab" href="#Artistas" role="tab">Artistas</a>
                         </li>
-                        <li class="nav-item ">
-                            <a class="nav-link"  data-toggle="tab" id="CerrarSesion" role="tab">Cerrar Sesion</a>
-                        </li>
-
                     </ul>
                 </div>
             </div>
@@ -81,7 +80,7 @@
                             // Mostrar mensaje si no hay generos
                             out.print("<div class=\"panel panel-default\"><h1>No hay generos</h1></div>");
                         } else {
-                            // Separador para que haya un margen arriba
+                            //  Separador para que haya un margen arriba
                             out.print("<div class=\"row\"><div style=\"margin-top: 20px\"></div></div>");
                             // Recorrer generos
                             for (int i = 0; i < generos.size(); i++) {

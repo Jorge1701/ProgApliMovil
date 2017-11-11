@@ -25,17 +25,20 @@
                     pass = todoLosCockies[i].getValue();
                 }
             }
-        %>
+              %>
 
     </head>
     <body style="background-color: #2e6da4">
 
 
         <div class="col-lg-4 col-md-3 col-sm-2 col-xs-1"></div>
-        <div class="col-lg-5 col-md-6 col-sm-8 col-xs-12">
+
+        <div class="col-lg-4 col-md-6 col-sm-8 col-xs-12">
 
 
-            <form action="/WebMovil/SMovil" method="POST">
+            <img src="media/icono.png" class="col-lg-offset-4"  width="100" height="100" style="margin-top: 4px">
+            <h1 style="color: white" class="col-lg-offset-2">Iniciar Sesión</h1>
+            <form action="/WebMovil/SMovil" method="POST" id="iniciar">
                 <div class="input-group input-group-md" style="margin-top: 50px">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                         <% if (nick == "") {%>
@@ -55,7 +58,7 @@
                     <%}%>
                 </div>
                 <div class="input-group input-group-md"style="margin-top: 10px">
-                    <input id="recordar" type="checkbox" checked><text style="color: white"> Recordarme</text>
+                    <input id="recordar" type="checkbox" ><text style="color: white"> Recordarme</text>
                 </div>
 
                 <%

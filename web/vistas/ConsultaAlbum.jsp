@@ -28,6 +28,8 @@
     </head>
     <body style="background-color: black" >
         <%
+            DtUsuario user = (DtUsuario) request.getSession().getAttribute("usuario");
+            DtSuscripcion actual = ((DtCliente) user).getActual();
             DtAlbumContenido albumes = (DtAlbumContenido) request.getAttribute("Album");
             DtUsuario artista = (DtUsuario) request.getAttribute("Artista");
             DtAlbum inf = (DtAlbum) albumes.getInfo();
@@ -39,37 +41,72 @@
             String nombreAlbum = inf.getNombre();
             int anioCreacion = inf.getAnio();
         %>
-        <div class="row "  >
-            <div class="col-lg-12 col-xs-6 col-sm-6 col-md-6 col-md-offset-5 col-xs-offset-3 col-sm-offset-4 col-lg-offset-5" >
-                <td><h2 style="color: whitesmoke"><%= nombre%> <%= apellido%></h2></td>
-                <td><h2 style="color: whitesmoke"><%= nombreAlbum%>,<%= anioCreacion%> </h2></td>
-                <td><h2 style="color: whitesmoke">Generos: <% for (int i = 0; i < Generos.size(); i++) {%><%= Generos.get(i)%><%}%></h2></td>
-            </div>
-        </div>          
-    </div> 
-    <%-- Temas --%>
-    <div class="table-responsive col-lg-10 col-md-10 col-md-offset-1 col-lg-offset-1" style=" border-color: transparent"  >
-        <div class="panel-group" >
-            <div class="panel panel-default" >
-                <% for (int i = 0; i < temas.size(); i++) {%>
-                <div class="panel" style="background-color: black;border-bottom-width: 1px; border-bottom-color:white "  >
-                    <div class="row"><h2 class="panel-title col-lg-11 col-xs-10 col-md-11 .col-xl-11" style="color: whitesmoke"><%=temas.get(i).getNombre()%> </h2>
-                        <a class="col-lg-1" data-toggle="collapse" href="#<%=i%>" >
-                            <span class="glyphicon glyphicon-plus  " aria-hidden="true"></span></a>                      
-                    </div>
+
+        <nav class="navbar navbar-inverse navbar-fixed-top"  style="background-color: black">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span style="color: greenyellow" class="sr-only">Menu</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#" style="color: greenyellow">Bienvenido <%= user.getNickname()%></a>
                 </div>
-                <div id="<%= i%>" class="panel-collapse collapse" >
-                    <ul class="list-group"  >
-                        <li class="list-group-item" style="color: black">Duracion: <%= temas.get(i).getDuracion().getHoras()%>:<%= temas.get(i).getDuracion().getMinutos()%>:<%= temas.get(i).getDuracion().getSegundos()%></li>
-                        <li class="list-group-item" style="color: black">Ubicacion: <%= temas.get(i) instanceof DtTemaLocal ? ((DtTemaLocal) temas.get(i)).getDirectorio() : ((DtTemaRemoto) temas.get(i)).getUrl()%></li>
-                        <li class="list-group-item" style="color: black"><input readonly onclick="Descarga('<%=((DtTemaLocal) temas.get(i)).getDirectorio()%>')" class="btn btn-info" id="btnDescargar" value="Descargar"></li>
-                        
+                <!-- Nav tabs -->
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav nav-pills" >
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#Generos" role="tab">Generos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#Artistas" role="tab">Artistas</a>
+                        </li>
                     </ul>
                 </div>
-                <% }%>
+            </div>
+
+            <div class="row "  >
+                <div class="col-lg-12 col-xs-6 col-sm-6 col-md-6 col-md-offset-5 col-xs-offset-3 col-sm-offset-4 col-lg-offset-5" >
+                    <td><h2 style="color: whitesmoke"><%= nombre%> <%= apellido%></h2></td>
+                    <td><h2 style="color: whitesmoke"><%= nombreAlbum%>,<%= anioCreacion%> </h2></td>
+                    <td><h2 style="color: whitesmoke">Generos: <% for (int i = 0; i < Generos.size(); i++) {%><%= Generos.get(i)%><%}%></h2></td>
+                </div>
+            </div>          
+        </div> 
+        <%-- Temas --%>
+        <div class="table-responsive col-lg-10 col-md-10 col-md-offset-1 col-lg-offset-1" style=" border-color: transparent"  >
+            <div class="panel-group" >
+                <div class="panel panel-default" >
+                    <% for (int i = 0; i < temas.size(); i++) {%>
+                    <div class="panel" style="background-color: black;border-bottom-width: 1px; border-bottom-color:white "  >
+                        <div class="row"><h2 class="panel-title col-lg-11 col-xs-10 col-md-11 .col-xl-11" style="color: whitesmoke"><%=temas.get(i).getNombre()%> </h2>
+                            <a class="col-lg-1" data-toggle="collapse" href="#<%=i%>" >
+                                <span class="glyphicon glyphicon-plus  " aria-hidden="true"></span></a>                      
+                        </div>
+                    </div>
+                    <div id="<%= i%>" class="panel-collapse collapse" >
+                        <ul class="list-group"  >
+                            <li class="list-group-item" style="color: black">Duracion: <%= temas.get(i).getDuracion().getHoras()%>:<%= temas.get(i).getDuracion().getMinutos()%>:<%= temas.get(i).getDuracion().getSegundos()%></li>
+                            <li class="list-group-item" style="color: black">Ubicacion: <%= temas.get(i) instanceof DtTemaLocal ? ((DtTemaLocal) temas.get(i)).getDirectorio() : ((DtTemaRemoto) temas.get(i)).getUrl()%></li>
+                            <li class="list-group-item" style="color: black"></li>
+                            <%  if (temas.get(i) instanceof DtTemaLocal) {
+                                        if (actual.getEstado().equals("Vigente")) {%>
+                            <li class="list-group-item" style="color: black"><input readonly onclick="Descarga('<%=((DtTemaLocal) temas.get(i)).getDirectorio()%>')" class="btn btn-info" id="btnDescargar" value="Descargar"></li>
+                                <%} else {%>   
+                            <li class="list-group-item" style="color: black">Sin Suscripcion</li>
+                                <% }
+                                } else { %>
+                            <li class="list-group-item" style="color: black">Tema Remoto</li>
+                                <% }%>
+                        </ul>
+                    </div>
+                    <% }%>
+                </div>
             </div>
         </div>
-    </div>
+
+    </nav>
 
 </body>
 </html>

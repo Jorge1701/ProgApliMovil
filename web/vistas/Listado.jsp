@@ -4,6 +4,7 @@
     Author     : Brian
 --%>
 
+<%@page import="servicios.DtUsuario"%>
 <%@page import="servicios.DtLista"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="servicios.DtAlbum"%>
@@ -22,11 +23,13 @@
 
     </style>
     <body>
+        <%
+             DtUsuario user = (DtUsuario) request.getSession().getAttribute("usuario");
+        %>
 
         <div class="tab-content">
 
         </div>
-
     <body style="background-color: black">
         <!-- Static navbar -->
         <nav class="navbar navbar-inverse navbar-fixed-top"  style="background-color: black">
@@ -38,7 +41,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#" style="color: greenyellow">Bienvenido Brian</a>
+                    <a class="navbar-brand" href="#" style="color: greenyellow">Bienvenido <%= user.getNickname()%></a>
                 </div>
                 <!-- Nav tabs -->
                 <div id="navbar" class="navbar-collapse collapse">
@@ -48,9 +51,6 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active" data-toggle="tab" href="#albumes" role="tab">Albumes</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link"  data-toggle="tab" href="#as" role="tab">Cerrar Sesion</a>
                         </li>
                     </ul>
                 </div>
