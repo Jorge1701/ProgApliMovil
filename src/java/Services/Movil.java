@@ -19,21 +19,6 @@ public class Movil {
         throw new UnsupportedOperationException("Not implemented yet.");
     }
 
-    public servicios.DtListaAlbum listarAlbumesGenero(java.lang.String arg0) {
-        //TODO implement this method
-        throw new UnsupportedOperationException("Not implemented yet.");
-    }
-
-    public servicios.DtAlbumContenido obtenerAlbumContenido(java.lang.String arg0, java.lang.String arg1) {
-        //TODO implement this method
-        throw new UnsupportedOperationException("Not implemented yet.");
-    }
-
-    public servicios.DtListaDeListas listarLisReproduccion(java.lang.String arg0) {
-        //TODO implement this method
-        throw new UnsupportedOperationException("Not implemented yet.");
-    }
-
     public void publicar() {
         //TODO implement this method
         throw new UnsupportedOperationException("Not implemented yet.");
@@ -49,12 +34,17 @@ public class Movil {
         throw new UnsupportedOperationException("Not implemented yet.");
     }
 
-    public servicios.DtUsuario getDataCliente(java.lang.String arg0) {
+    public servicios.DtAlbumContenido obtenerAlbumContenido(java.lang.String arg0, java.lang.String arg1) {
         //TODO implement this method
         throw new UnsupportedOperationException("Not implemented yet.");
     }
 
-    public boolean esCliente(java.lang.String arg0) {
+    public servicios.DtListaDeListas listarLisReproduccion(java.lang.String arg0) {
+        //TODO implement this method
+        throw new UnsupportedOperationException("Not implemented yet.");
+    }
+
+    public servicios.DtListaAlbum listarAlbumesGenero(java.lang.String arg0) {
         //TODO implement this method
         throw new UnsupportedOperationException("Not implemented yet.");
     }
@@ -64,7 +54,7 @@ public class Movil {
         throw new UnsupportedOperationException("Not implemented yet.");
     }
 
-    public servicios.DtListaString obtenerGeneros() {
+    public boolean esCliente(java.lang.String arg0) {
         //TODO implement this method
         throw new UnsupportedOperationException("Not implemented yet.");
     }
@@ -79,7 +69,17 @@ public class Movil {
         throw new UnsupportedOperationException("Not implemented yet.");
     }
 
-    public servicios.DtListaDeListasPublicas listarListas() {
+    public servicios.DtListaString obtenerGeneros() {
+        //TODO implement this method
+        throw new UnsupportedOperationException("Not implemented yet.");
+    }
+
+    public servicios.DtUsuario getDataCliente(java.lang.String arg0) {
+        //TODO implement this method
+        throw new UnsupportedOperationException("Not implemented yet.");
+    }
+
+    public void cargarDatosPrueba() {
         //TODO implement this method
         throw new UnsupportedOperationException("Not implemented yet.");
     }

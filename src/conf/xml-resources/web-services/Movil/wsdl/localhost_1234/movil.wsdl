@@ -8,11 +8,17 @@
 <part name="arg0" type="tns:DtPerfilArtista"></part>
 </message>
 <message name="aResponse"></message>
-<message name="listarAlbumesGenero">
+<message name="publicar"></message>
+<message name="publicarResponse"></message>
+<message name="obtenerPerfilArtista">
 <part name="arg0" type="xsd:string"></part>
 </message>
-<message name="listarAlbumesGeneroResponse">
-<part name="return" type="tns:DtListaAlbum"></part>
+<message name="obtenerPerfilArtistaResponse">
+<part name="return" type="tns:DtPerfilUsuario"></part>
+</message>
+<message name="listarArtistas"></message>
+<message name="listarArtistasResponse">
+<part name="return" type="tns:DtListaUsuarios"></part>
 </message>
 <message name="obtenerAlbumContenido">
 <part name="arg0" type="xsd:string"></part>
@@ -27,29 +33,11 @@
 <message name="listarLisReproduccionResponse">
 <part name="return" type="tns:DtListaDeListas"></part>
 </message>
-<message name="publicar"></message>
-<message name="publicarResponse"></message>
-<message name="obtenerPerfilArtista">
+<message name="listarAlbumesGenero">
 <part name="arg0" type="xsd:string"></part>
 </message>
-<message name="obtenerPerfilArtistaResponse">
-<part name="return" type="tns:DtPerfilUsuario"></part>
-</message>
-<message name="listarArtistas"></message>
-<message name="listarArtistasResponse">
-<part name="return" type="tns:DtListaUsuarios"></part>
-</message>
-<message name="getDataCliente">
-<part name="arg0" type="xsd:string"></part>
-</message>
-<message name="getDataClienteResponse">
-<part name="return" type="tns:DtUsuario"></part>
-</message>
-<message name="esCliente">
-<part name="arg0" type="xsd:string"></part>
-</message>
-<message name="esClienteResponse">
-<part name="return" type="xsd:boolean"></part>
+<message name="listarAlbumesGeneroResponse">
+<part name="return" type="tns:DtListaAlbum"></part>
 </message>
 <message name="chequearLogin">
 <part name="arg0" type="xsd:string"></part>
@@ -58,9 +46,11 @@
 <message name="chequearLoginResponse">
 <part name="return" type="xsd:string"></part>
 </message>
-<message name="obtenerGeneros"></message>
-<message name="obtenerGenerosResponse">
-<part name="return" type="tns:DtListaString"></part>
+<message name="esCliente">
+<part name="arg0" type="xsd:string"></part>
+</message>
+<message name="esClienteResponse">
+<part name="return" type="xsd:boolean"></part>
 </message>
 <message name="getDataUsuario">
 <part name="arg0" type="xsd:string"></part>
@@ -74,26 +64,22 @@
 <message name="existeGeneroResponse">
 <part name="return" type="xsd:boolean"></part>
 </message>
-<message name="listarListas"></message>
-<message name="listarListasResponse">
-<part name="return" type="tns:DtListaDeListasPublicas"></part>
+<message name="obtenerGeneros"></message>
+<message name="obtenerGenerosResponse">
+<part name="return" type="tns:DtListaString"></part>
 </message>
+<message name="getDataCliente">
+<part name="arg0" type="xsd:string"></part>
+</message>
+<message name="getDataClienteResponse">
+<part name="return" type="tns:DtUsuario"></part>
+</message>
+<message name="cargarDatosPrueba"></message>
+<message name="cargarDatosPruebaResponse"></message>
 <portType name="PMovil">
 <operation name="a">
 <input wsam:Action="http://Servicios/PMovil/aRequest" message="tns:a"></input>
 <output wsam:Action="http://Servicios/PMovil/aResponse" message="tns:aResponse"></output>
-</operation>
-<operation name="listarAlbumesGenero">
-<input wsam:Action="http://Servicios/PMovil/listarAlbumesGeneroRequest" message="tns:listarAlbumesGenero"></input>
-<output wsam:Action="http://Servicios/PMovil/listarAlbumesGeneroResponse" message="tns:listarAlbumesGeneroResponse"></output>
-</operation>
-<operation name="obtenerAlbumContenido" parameterOrder="arg0 arg1">
-<input wsam:Action="http://Servicios/PMovil/obtenerAlbumContenidoRequest" message="tns:obtenerAlbumContenido"></input>
-<output wsam:Action="http://Servicios/PMovil/obtenerAlbumContenidoResponse" message="tns:obtenerAlbumContenidoResponse"></output>
-</operation>
-<operation name="listarLisReproduccion">
-<input wsam:Action="http://Servicios/PMovil/listarLisReproduccionRequest" message="tns:listarLisReproduccion"></input>
-<output wsam:Action="http://Servicios/PMovil/listarLisReproduccionResponse" message="tns:listarLisReproduccionResponse"></output>
 </operation>
 <operation name="publicar">
 <input wsam:Action="http://Servicios/PMovil/publicarRequest" message="tns:publicar"></input>
@@ -107,21 +93,25 @@
 <input wsam:Action="http://Servicios/PMovil/listarArtistasRequest" message="tns:listarArtistas"></input>
 <output wsam:Action="http://Servicios/PMovil/listarArtistasResponse" message="tns:listarArtistasResponse"></output>
 </operation>
-<operation name="getDataCliente">
-<input wsam:Action="http://Servicios/PMovil/getDataClienteRequest" message="tns:getDataCliente"></input>
-<output wsam:Action="http://Servicios/PMovil/getDataClienteResponse" message="tns:getDataClienteResponse"></output>
+<operation name="obtenerAlbumContenido" parameterOrder="arg0 arg1">
+<input wsam:Action="http://Servicios/PMovil/obtenerAlbumContenidoRequest" message="tns:obtenerAlbumContenido"></input>
+<output wsam:Action="http://Servicios/PMovil/obtenerAlbumContenidoResponse" message="tns:obtenerAlbumContenidoResponse"></output>
 </operation>
-<operation name="esCliente">
-<input wsam:Action="http://Servicios/PMovil/esClienteRequest" message="tns:esCliente"></input>
-<output wsam:Action="http://Servicios/PMovil/esClienteResponse" message="tns:esClienteResponse"></output>
+<operation name="listarLisReproduccion">
+<input wsam:Action="http://Servicios/PMovil/listarLisReproduccionRequest" message="tns:listarLisReproduccion"></input>
+<output wsam:Action="http://Servicios/PMovil/listarLisReproduccionResponse" message="tns:listarLisReproduccionResponse"></output>
+</operation>
+<operation name="listarAlbumesGenero">
+<input wsam:Action="http://Servicios/PMovil/listarAlbumesGeneroRequest" message="tns:listarAlbumesGenero"></input>
+<output wsam:Action="http://Servicios/PMovil/listarAlbumesGeneroResponse" message="tns:listarAlbumesGeneroResponse"></output>
 </operation>
 <operation name="chequearLogin" parameterOrder="arg0 arg1">
 <input wsam:Action="http://Servicios/PMovil/chequearLoginRequest" message="tns:chequearLogin"></input>
 <output wsam:Action="http://Servicios/PMovil/chequearLoginResponse" message="tns:chequearLoginResponse"></output>
 </operation>
-<operation name="obtenerGeneros">
-<input wsam:Action="http://Servicios/PMovil/obtenerGenerosRequest" message="tns:obtenerGeneros"></input>
-<output wsam:Action="http://Servicios/PMovil/obtenerGenerosResponse" message="tns:obtenerGenerosResponse"></output>
+<operation name="esCliente">
+<input wsam:Action="http://Servicios/PMovil/esClienteRequest" message="tns:esCliente"></input>
+<output wsam:Action="http://Servicios/PMovil/esClienteResponse" message="tns:esClienteResponse"></output>
 </operation>
 <operation name="getDataUsuario">
 <input wsam:Action="http://Servicios/PMovil/getDataUsuarioRequest" message="tns:getDataUsuario"></input>
@@ -131,9 +121,17 @@
 <input wsam:Action="http://Servicios/PMovil/existeGeneroRequest" message="tns:existeGenero"></input>
 <output wsam:Action="http://Servicios/PMovil/existeGeneroResponse" message="tns:existeGeneroResponse"></output>
 </operation>
-<operation name="listarListas">
-<input wsam:Action="http://Servicios/PMovil/listarListasRequest" message="tns:listarListas"></input>
-<output wsam:Action="http://Servicios/PMovil/listarListasResponse" message="tns:listarListasResponse"></output>
+<operation name="obtenerGeneros">
+<input wsam:Action="http://Servicios/PMovil/obtenerGenerosRequest" message="tns:obtenerGeneros"></input>
+<output wsam:Action="http://Servicios/PMovil/obtenerGenerosResponse" message="tns:obtenerGenerosResponse"></output>
+</operation>
+<operation name="getDataCliente">
+<input wsam:Action="http://Servicios/PMovil/getDataClienteRequest" message="tns:getDataCliente"></input>
+<output wsam:Action="http://Servicios/PMovil/getDataClienteResponse" message="tns:getDataClienteResponse"></output>
+</operation>
+<operation name="cargarDatosPrueba">
+<input wsam:Action="http://Servicios/PMovil/cargarDatosPruebaRequest" message="tns:cargarDatosPrueba"></input>
+<output wsam:Action="http://Servicios/PMovil/cargarDatosPruebaResponse" message="tns:cargarDatosPruebaResponse"></output>
 </operation>
 </portType>
 <binding name="PMovilPortBinding" type="tns:PMovil">
@@ -147,7 +145,25 @@
 <soap:body use="literal" namespace="http://Servicios/"></soap:body>
 </output>
 </operation>
-<operation name="listarAlbumesGenero">
+<operation name="publicar">
+<soap:operation soapAction=""></soap:operation>
+<input>
+<soap:body use="literal" namespace="http://Servicios/"></soap:body>
+</input>
+<output>
+<soap:body use="literal" namespace="http://Servicios/"></soap:body>
+</output>
+</operation>
+<operation name="obtenerPerfilArtista">
+<soap:operation soapAction=""></soap:operation>
+<input>
+<soap:body use="literal" namespace="http://Servicios/"></soap:body>
+</input>
+<output>
+<soap:body use="literal" namespace="http://Servicios/"></soap:body>
+</output>
+</operation>
+<operation name="listarArtistas">
 <soap:operation soapAction=""></soap:operation>
 <input>
 <soap:body use="literal" namespace="http://Servicios/"></soap:body>
@@ -174,43 +190,7 @@
 <soap:body use="literal" namespace="http://Servicios/"></soap:body>
 </output>
 </operation>
-<operation name="publicar">
-<soap:operation soapAction=""></soap:operation>
-<input>
-<soap:body use="literal" namespace="http://Servicios/"></soap:body>
-</input>
-<output>
-<soap:body use="literal" namespace="http://Servicios/"></soap:body>
-</output>
-</operation>
-<operation name="obtenerPerfilArtista">
-<soap:operation soapAction=""></soap:operation>
-<input>
-<soap:body use="literal" namespace="http://Servicios/"></soap:body>
-</input>
-<output>
-<soap:body use="literal" namespace="http://Servicios/"></soap:body>
-</output>
-</operation>
-<operation name="listarArtistas">
-<soap:operation soapAction=""></soap:operation>
-<input>
-<soap:body use="literal" namespace="http://Servicios/"></soap:body>
-</input>
-<output>
-<soap:body use="literal" namespace="http://Servicios/"></soap:body>
-</output>
-</operation>
-<operation name="getDataCliente">
-<soap:operation soapAction=""></soap:operation>
-<input>
-<soap:body use="literal" namespace="http://Servicios/"></soap:body>
-</input>
-<output>
-<soap:body use="literal" namespace="http://Servicios/"></soap:body>
-</output>
-</operation>
-<operation name="esCliente">
+<operation name="listarAlbumesGenero">
 <soap:operation soapAction=""></soap:operation>
 <input>
 <soap:body use="literal" namespace="http://Servicios/"></soap:body>
@@ -228,7 +208,7 @@
 <soap:body use="literal" namespace="http://Servicios/"></soap:body>
 </output>
 </operation>
-<operation name="obtenerGeneros">
+<operation name="esCliente">
 <soap:operation soapAction=""></soap:operation>
 <input>
 <soap:body use="literal" namespace="http://Servicios/"></soap:body>
@@ -255,7 +235,25 @@
 <soap:body use="literal" namespace="http://Servicios/"></soap:body>
 </output>
 </operation>
-<operation name="listarListas">
+<operation name="obtenerGeneros">
+<soap:operation soapAction=""></soap:operation>
+<input>
+<soap:body use="literal" namespace="http://Servicios/"></soap:body>
+</input>
+<output>
+<soap:body use="literal" namespace="http://Servicios/"></soap:body>
+</output>
+</operation>
+<operation name="getDataCliente">
+<soap:operation soapAction=""></soap:operation>
+<input>
+<soap:body use="literal" namespace="http://Servicios/"></soap:body>
+</input>
+<output>
+<soap:body use="literal" namespace="http://Servicios/"></soap:body>
+</output>
+</operation>
+<operation name="cargarDatosPrueba">
 <soap:operation soapAction=""></soap:operation>
 <input>
 <soap:body use="literal" namespace="http://Servicios/"></soap:body>

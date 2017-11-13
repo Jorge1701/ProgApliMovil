@@ -15,6 +15,7 @@
             String nick = "";
             String pass = "";
             Cookie[] todoLosCockies = request.getCookies();
+            if( todoLosCockies != null ){
             for (int i = 0; i < todoLosCockies.length; i++) {
                 if (todoLosCockies[i].getName().equals("nick")) {
                     nick = todoLosCockies[i].getValue();
@@ -25,7 +26,7 @@
                     pass = todoLosCockies[i].getValue();
                 }
             }
-              %>
+            }   %>
 
     </head>
     <body style="background-color: #2e6da4">

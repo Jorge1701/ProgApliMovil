@@ -4,22 +4,22 @@
         <listener-class>com.sun.xml.ws.transport.http.servlet.WSServletContextListener</listener-class>
     </listener>
     <servlet>
-        <servlet-name>PMovilService</servlet-name>
+        <servlet-name>PDownloadFileService</servlet-name>
         <servlet-class>com.sun.xml.ws.transport.http.servlet.WSServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet>
-        <servlet-name>PDownloadFileService</servlet-name>
+        <servlet-name>PMovilService</servlet-name>
         <servlet-class>com.sun.xml.ws.transport.http.servlet.WSServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>
-        <servlet-name>PMovilService</servlet-name>
-        <url-pattern>/PMovilService</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>PDownloadFileService</servlet-name>
         <url-pattern>/PDownloadFileService</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PMovilService</servlet-name>
+        <url-pattern>/PMovilService</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

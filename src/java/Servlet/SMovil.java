@@ -46,6 +46,7 @@ public class SMovil extends HttpServlet {
             PMovilService webserv = new PMovilService(url);
             port = webserv.getPMovilPort();
         } catch (MalformedURLException ex) {
+            log("b");
             Logger.getLogger(SMovil.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -70,22 +71,6 @@ public class SMovil extends HttpServlet {
 
         if (request.getParameter("accion") == null) {
 
-            log("Sin Accion");
-            Cookie[] todoLosCockies = request.getCookies();
-            for (Cookie Cockie : todoLosCockies) {
-                if (Cockie.getName().equals("nick")) {
-                    String nickname = Cockie.getValue();
-                    DtUsuario dtu = port.getDataCliente(nickname);
-                    log(nickname);
-                    request.getSession().setAttribute("usuario", dtu);
-                    request.setAttribute("generos", (ArrayList) port.obtenerGeneros().getString());
-                    request.setAttribute("artistas", (ArrayList) port.listarArtistas().getUsuarios());
-                    request.setAttribute("listas", (ArrayList) port.listarListas().getListas());
-                    request.getRequestDispatcher("vistas/Inicio.jsp").forward(request, response);
-
-                } 
-            }
-            log("No Cockie");
           request.getRequestDispatcher("vistas/InicioSesion.jsp").forward(request, response);
         }
                 String accion = request.getParameter("accion");
@@ -136,7 +121,6 @@ public class SMovil extends HttpServlet {
                     case "Inicio":
                         request.setAttribute("generos", (ArrayList) port.obtenerGeneros().getString());
                         request.setAttribute("artistas", (ArrayList) port.listarArtistas().getUsuarios());
-                        request.setAttribute("listas", (ArrayList) port.listarListas().getListas());
                         request.getRequestDispatcher("vistas/Inicio.jsp").forward(request, response);
                         break;
                     case "consultarGenero":
