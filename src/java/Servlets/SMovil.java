@@ -95,9 +95,9 @@ public class SMovil extends HttpServlet {
                 }
             }
 
-        }
+        }else{
         String accion = request.getParameter("accion");
-        log("Accion: " + accion);
+
         switch (accion) {
             case "error":
                 if (request.getParameter("mensaje") == null) {
@@ -202,8 +202,8 @@ public class SMovil extends HttpServlet {
                 }
                 break;
         }
+        }
     }
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
