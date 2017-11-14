@@ -19,7 +19,6 @@
         <jsp:include page="include.html"/>
     </head>
     <style>           
-
         @media (max-width: 700px) { 
             ul {
                 list-style-type: none;
@@ -36,11 +35,7 @@
             }
 
         }
-        @media (max-width: 480px) { 
-            h1 {
-                font-size:20px;
-            }
-        }
+
         @media (max-width: 500px) { 
             h1 {
                 height: 30px;
@@ -52,13 +47,14 @@
         }
 
 
+
     </style>
     <body>
         <%
             DtUsuario user = (DtUsuario) request.getSession().getAttribute("usuario");
         %>
 
-     
+
 
         <div class="tab-content">
 
@@ -102,7 +98,7 @@
                                 }
                                 out.print("<div class=\"col-lg-3 col-xs-6 col-sm-6 col-md-6\">");
                                 out.print("<div class=\"panel panel-default\" style=\"margin-left: 10px; margin-right: 10px \" onclick=\"ConsultaAlbum('" + albumes.get(i).getNickArtista() + "','" + albumes.get(i).getNombre() + "')\">");
-                                out.print("<h1 class=\"text-center\" style=\"width: 157px\" >" + albumes.get(i).getNombre() + "</h1>");
+                                out.print("<h1 class=\"text-center\" >" + albumes.get(i).getNombre() + "</h1>");
                                 out.print("</div>");
                                 out.print("</div>");
                             }
