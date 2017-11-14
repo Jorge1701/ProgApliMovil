@@ -18,7 +18,6 @@
         <jsp:include page="include.html"/>
         <style>
 
-
             @media (max-width: 700px) { 
                 ul {
                     list-style-type: none;
@@ -30,6 +29,9 @@
                 li a.nav-link {
                     display: block;
                 }
+                h1 {
+                    font-size:20px;
+                }
 
             }
             @media (max-width: 480px) { 
@@ -37,12 +39,17 @@
                     font-size:20px;
                 }
             }
-
-
-            li a:hover:not(.active) {
-                background-color: #4CAF50;
-                color: white;
+            @media (max-width: 500px) { 
+                h1 {
+                    height: 30px;
+                    font-size:20px;
+                }
             }
+            h1 {
+                font-size:15px;
+            }
+
+            
 
         </style>  
         <%

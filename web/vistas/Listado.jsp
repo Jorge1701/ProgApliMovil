@@ -31,6 +31,9 @@
             li a.nav-link {
                 display: block;
             }
+            h1 {
+                font-size:20px;
+            }
 
         }
         @media (max-width: 480px) { 
@@ -38,7 +41,15 @@
                 font-size:20px;
             }
         }
-
+        @media (max-width: 500px) { 
+            h1 {
+                height: 30px;
+                font-size:20px;
+            }
+        }
+        h1 {
+            font-size:15px;
+        }
 
 
     </style>
@@ -46,6 +57,8 @@
         <%
             DtUsuario user = (DtUsuario) request.getSession().getAttribute("usuario");
         %>
+
+     
 
         <div class="tab-content">
 
@@ -88,8 +101,8 @@
                                     out.print("<div class=\"row\">");
                                 }
                                 out.print("<div class=\"col-lg-3 col-xs-6 col-sm-6 col-md-6\">");
-                                out.print("<div class=\"panel panel-default\" style=\"margin-left: 10px;margin-right: 10px;\" onclick=\"ConsultaAlbum('" + albumes.get(i).getNickArtista() + "','" + albumes.get(i).getNombre() + "')\">");
-                                out.print("<h1 class=\"text-center\">" + albumes.get(i).getNombre() + "</h1>");
+                                out.print("<div class=\"panel panel-default\" style=\"margin-left: 10px; margin-right: 10px \" onclick=\"ConsultaAlbum('" + albumes.get(i).getNickArtista() + "','" + albumes.get(i).getNombre() + "')\">");
+                                out.print("<h1 class=\"text-center\" style=\"width: 157px\" >" + albumes.get(i).getNombre() + "</h1>");
                                 out.print("</div>");
                                 out.print("</div>");
                             }
