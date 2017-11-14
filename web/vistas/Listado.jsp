@@ -13,7 +13,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Espotify</title>
         <link rel="stylesheet" type="text/css" href="estilos/inicio.css">
         <jsp:include page="../scripts/Inicio.html"/>
         <jsp:include page="include.html"/>
@@ -48,9 +48,6 @@
                     <ul class="nav nav-pills" >
                         <li class="nav-item">
                             <a class="nav-link " data-toggle="tab" href="/WebMovil/SMovil?accion=Inicio" role="tab">Inicio</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" data-toggle="tab" href="#albumes" role="tab">Albumes</a>
                         </li>
                     </ul>
                 </div>

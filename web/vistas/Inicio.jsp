@@ -12,7 +12,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Espotify</title>
         <link rel="stylesheet" type="text/css" href="estilos/inicio.css">
         <jsp:include page="../scripts/Inicio.html"/>
         <jsp:include page="include.html"/>
@@ -42,6 +42,8 @@
         </style>  }
         <%
             DtUsuario user = (DtUsuario) request.getSession().getAttribute("usuario");
+            log(user.getNickname());
+            
         %>
     </head>
 

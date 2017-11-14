@@ -18,13 +18,14 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Espotify</title>
         <link rel="stylesheet" type="text/css" href="estilos/inicio.css">
         <jsp:include page="../scripts/Inicio.html"/>
         <jsp:include page="include.html"/>
         <style>           
 
         </style>
+
     </head>
     <body style="background-color: black" >
         <%
@@ -57,10 +58,7 @@
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav nav-pills" >
                         <li class="nav-item">
-                            <a class="nav-link active" data-toggle="tab" href="#Generos" role="tab">Generos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" data-toggle="tab" href="#Artistas" role="tab">Artistas</a>
+                            <a class="nav-link active" data-toggle="tab" onclick="irInicio()" role="tab">Inicio</a>
                         </li>
                     </ul>
                 </div>
@@ -80,22 +78,29 @@
                 <div class="panel panel-default" >
                     <% for (int i = 0; i < temas.size(); i++) {%>
                     <div class="panel" style="background-color: black;border-bottom-width: 1px; border-bottom-color:white "  >
-                        <div class="row"><h2 class="panel-title col-lg-11 col-xs-10 col-md-11 .col-xl-11" style="color: whitesmoke"><%=temas.get(i).getNombre()%> </h2>
-                            <a class="col-lg-1" data-toggle="collapse" href="#<%=i%>" >
-                                <span class="glyphicon glyphicon-plus  " aria-hidden="true"></span></a>                      
+                        <div class="row"> <div class="panel-heading">
+                                <h2 class="panel-title col-lg-11 col-xs-10 col-md-11 .col-xl-11" style="color: whitesmoke"><%=temas.get(i).getNombre()%> </h2>
+                                <a class="col-lg-1 " data-toggle="collapse"  href="#<%=i%>" >
+                                    <span class="glyphicon glyphicon-plus  "></span></a>     
+                            </div>
                         </div>
                     </div>
                     <div id="<%= i%>" class="panel-collapse collapse" >
                         <ul class="list-group"  >
                             <li class="list-group-item" style="color: black">Duracion: <%= temas.get(i).getDuracion().getHoras()%>:<%= temas.get(i).getDuracion().getMinutos()%>:<%= temas.get(i).getDuracion().getSegundos()%></li>
                             <li class="list-group-item" style="color: black">Ubicacion: <%= temas.get(i) instanceof DtTemaLocal ? ((DtTemaLocal) temas.get(i)).getDirectorio() : ((DtTemaRemoto) temas.get(i)).getUrl()%></li>
-                            <li class="list-group-item" style="color: black"></li>
+
                             <%  if (temas.get(i) instanceof DtTemaLocal) {
-                                        if (actual.getEstado().equals("Vigente")) {%>
-                            <li class="list-group-item" style="color: black"><input readonly onclick="Descarga('<%=((DtTemaLocal) temas.get(i)).getDirectorio()%>')" class="btn btn-info" id="btnDescargar" value="Descargar"></li>
+                                    if (actual != null) {
+                                        if (actual.getEstado().equals("Vigente")) {
+                            %>
+                            <li class="list-group-item" style="color: black">Cantidad De Descargas: <%= ((DtTemaLocal) temas.get(i)).getDescargas()%></li>
+                            <li class="list-group-item" style="color: black">Cantidad De Reproducciones:  <%= ((DtTemaLocal) temas.get(i)).getReproducciones()%></li>
+                            <li class="list-group-item" style="color: black"><input readonly onclick="Descarga('<%=((DtTemaLocal) temas.get(i)).getDirectorio()%>', '<%= ((DtTemaLocal) temas.get(i)).getArtista()%>', '<%=((DtTemaLocal) temas.get(i)).getAlbum()%>', '<%=((DtTemaLocal) temas.get(i)).getNombre()%>')" class="btn btn-info" id="btnDescargar" value="Descargar"></li>
                                 <%} else {%>   
                             <li class="list-group-item" style="color: black">Sin Suscripcion</li>
                                 <% }
+                                    }
                                 } else { %>
                             <li class="list-group-item" style="color: black">Tema Remoto</li>
                                 <% }%>

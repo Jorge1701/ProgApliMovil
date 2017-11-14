@@ -1,4 +1,4 @@
-package Servlet;
+package servlets;
 
 import Configuracion.Configuracion;
 import java.io.BufferedInputStream;
@@ -34,8 +34,9 @@ public class DownloadFile extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         if (request.getSession().getAttribute("usuario") == null || request.getParameter("Ruta") == null) {
+            log("Holaa");
             request.setAttribute("mensaje_error", "Lo siento, no se puede acceder aqui de esa forma");
-            request.getRequestDispatcher("vistas/pagina_error.jsp").forward(request, response);
+            request.getRequestDispatcher("vistas/error.jsp").forward(request, response);
             return;
         }
 

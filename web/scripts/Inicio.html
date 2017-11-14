@@ -9,9 +9,27 @@
     function ConsultaAlbum(nick, nomAlbum) {
         window.location = "/WebMovil/SMovil?accion=consultarAlbum&nickArtista=" + encodeURIComponent(nick) + "&nomAlbum=" + encodeURIComponent(nomAlbum);
     }
-    function Descarga(Ruta) {
+    function Descarga(Ruta, nickArt, nomAlbum, nomTema) {
         window.location = "/WebMovil/DownloadFile?Ruta=" + Ruta;
 
+        $.ajax({
+            type: "POST",
+            url: "/WebMovil/SContadores",
+            data: {
+                "accion": "descarga",
+                "nickArt": encodeURI(nickArt),
+                "nomAlbum": encodeURI(nomAlbum),
+                "nomTema": encodeURI(nomTema)
+            }
+        });
     }
+
+    function irInicio() {
+        window.location = "/WebMovil/SMovil?accion=Inicio";
+    }
+
+
+
+    
 
 </script>
