@@ -13,12 +13,13 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Espotify</title>
-        <link rel="stylesheet" type="text/css" href="estilos/inicio.css">
+
         <jsp:include page="../scripts/Inicio.html"/>
         <jsp:include page="include.html"/>
         <style>
 
-            @media (max-width: 480px) { 
+
+            @media (max-width: 700px) { 
                 ul {
                     list-style-type: none;
                     margin: 0;
@@ -29,21 +30,25 @@
                 li a.nav-link {
                     display: block;
                 }
-                h1 {
-                    font-size:16px;
-                }
 
             }
+            @media (max-width: 480px) { 
+                h1 {
+                    font-size:20px;
+                }
+            }
+
+
             li a:hover:not(.active) {
                 background-color: #4CAF50;
                 color: white;
             }
 
-        </style>  }
+        </style>  
         <%
             DtUsuario user = (DtUsuario) request.getSession().getAttribute("usuario");
             log(user.getNickname());
-            
+
         %>
     </head>
 
@@ -93,7 +98,8 @@
                                     out.print("<div class=\"row\">");
                                 }
                                 out.print("<div class=\" col-lg-3 col-xs-6 col-sm-6 col-md-6\">"); // El 3 sale de 12 / generos por columnas
-                                out.print("<div class=\"panel panel-default\" onclick=\"irAGenero('" + generos.get(i) + "')\">"); // Llama a la funcion irAGenero con el nombre del genero
+                                out.print("<div class=\"panel panel-default\" style=\"margin-left: 10px;margin-right: 10px;\" onclick =\"irAGenero('" + generos.get(i) + "')\">"
+                                ); // Llama a la funcion irAGenero con el nombre del genero
                                 out.print("<h1 class=\"text-center\">" + generos.get(i) + "</h1>"); // Muestra el nombre de genero
                                 out.print("</div>");
                                 out.print("</div>");
@@ -123,7 +129,7 @@
                                     out.print("<div class=\"row\">");
                                 }
                                 out.print("<div class=\"col-lg-3 col-xs-6 col-sm-6 col-md-6\">"); // El 3 sale de 12 / artistas por columnas
-                                out.print("<div class=\"panel panel-default\" onclick=\"irAPerfil('" + artistas.get(i).getNickname() + "')\">"); // Llama a la funcion irAPerfil con el nick del artista
+                                out.print("<div class=\"panel panel-default\" style=\"margin-left: 2px;margin-right: 2px;\" onclick=\"irAPerfil('" + artistas.get(i).getNickname() + "')\">"); // Llama a la funcion irAPerfil con el nick del artista
                                 out.print("<h1 class=\"text-center\">" + artistas.get(i).getNombre() + " " + artistas.get(i).getApellido() + "</h1>"); // Muestra el nombre de artista
                                 out.print("</div>");
                                 out.print("</div>");

@@ -1,0 +1,25 @@
+    
+@media (max-width: 700px) { 
+                ul {
+                    list-style-type: none;
+                    margin: 0;
+                    padding: 0;
+                    width: 60px;
+                } 
+
+                li a.nav-link {
+                    display: block;
+                }
+
+            }
+            @media (max-width: 480px) { 
+                h1 {
+                    font-size:20px;
+                }
+            }
+
+
+            li a:hover:not(.active) {
+                background-color: #4CAF50;
+                color: white;
+            }

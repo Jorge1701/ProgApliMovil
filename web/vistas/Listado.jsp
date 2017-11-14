@@ -20,11 +20,31 @@
     </head>
     <style>           
 
+        @media (max-width: 700px) { 
+            ul {
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                width: 60px;
+            } 
+
+            li a.nav-link {
+                display: block;
+            }
+
+        }
+        @media (max-width: 480px) { 
+            h1 {
+                font-size:20px;
+            }
+        }
+
+
 
     </style>
     <body>
         <%
-             DtUsuario user = (DtUsuario) request.getSession().getAttribute("usuario");
+            DtUsuario user = (DtUsuario) request.getSession().getAttribute("usuario");
         %>
 
         <div class="tab-content">
@@ -46,8 +66,8 @@
                 <!-- Nav tabs -->
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav nav-pills" >
-                        <li class="nav-item">
-                            <a class="nav-link " data-toggle="tab" href="/WebMovil/SMovil?accion=Inicio" role="tab">Inicio</a>
+                        <li class="nav-item"> 
+                            <a class="nav-link " data-toggle="tab" onclick="irInicio()" role="tab">Inicio</a>
                         </li>
                     </ul>
                 </div>
@@ -67,8 +87,8 @@
                                     }
                                     out.print("<div class=\"row\">");
                                 }
-                                out.print("<div class=\"col-lg-3\">");
-                                out.print("<div class=\"panel panel-default\" onclick=\"ConsultaAlbum('" + albumes.get(i).getNickArtista() + "','" + albumes.get(i).getNombre() + "')\">");
+                                out.print("<div class=\"col-lg-3 col-xs-6 col-sm-6 col-md-6\">");
+                                out.print("<div class=\"panel panel-default\" style=\"margin-left: 10px;margin-right: 10px;\" onclick=\"ConsultaAlbum('" + albumes.get(i).getNickArtista() + "','" + albumes.get(i).getNombre() + "')\">");
                                 out.print("<h1 class=\"text-center\">" + albumes.get(i).getNombre() + "</h1>");
                                 out.print("</div>");
                                 out.print("</div>");

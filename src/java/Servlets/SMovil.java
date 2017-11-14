@@ -67,7 +67,7 @@ public class SMovil extends HttpServlet {
             throws ServletException, IOException {
 
         if (request.getParameter("accion") == null) {
-            log("a");
+
             DtUsuario dtu = null;
             if (request.getSession().getAttribute("usuario") != null) {
                 request.getSession().removeAttribute("usuario");
@@ -89,10 +89,12 @@ public class SMovil extends HttpServlet {
                             break;
                         }
                     }
+                }else{
+                request.getRequestDispatcher("vistas/InicioSesion.jsp").forward(request, response);
+                return;
                 }
             }
-            request.getRequestDispatcher("vistas/InicioSesion.jsp").forward(request, response);
-            return;
+
         }
         String accion = request.getParameter("accion");
         log("Accion: " + accion);

@@ -24,6 +24,9 @@
         <jsp:include page="include.html"/>
         <style>           
 
+
+
+
         </style>
 
     </head>
@@ -87,22 +90,22 @@
                     </div>
                     <div id="<%= i%>" class="panel-collapse collapse" >
                         <ul class="list-group"  >
-                            <li class="list-group-item" style="color: black">Duracion: <%= temas.get(i).getDuracion().getHoras()%>:<%= temas.get(i).getDuracion().getMinutos()%>:<%= temas.get(i).getDuracion().getSegundos()%></li>
-                            <li class="list-group-item" style="color: black">Ubicacion: <%= temas.get(i) instanceof DtTemaLocal ? ((DtTemaLocal) temas.get(i)).getDirectorio() : ((DtTemaRemoto) temas.get(i)).getUrl()%></li>
+                            <li class="list-group-item" style="color: black; width: 250px">Duracion: <%= temas.get(i).getDuracion().getHoras()%>:<%= temas.get(i).getDuracion().getMinutos()%>:<%= temas.get(i).getDuracion().getSegundos()%></li>
+                            <li class="list-group-item" style="color: black; width: 250px">Ubicacion: <%= temas.get(i) instanceof DtTemaLocal ? ((DtTemaLocal) temas.get(i)).getDirectorio() : ((DtTemaRemoto) temas.get(i)).getUrl()%></li>
 
                             <%  if (temas.get(i) instanceof DtTemaLocal) {
                                     if (actual != null) {
                                         if (actual.getEstado().equals("Vigente")) {
                             %>
-                            <li class="list-group-item" style="color: black">Cantidad De Descargas: <%= ((DtTemaLocal) temas.get(i)).getDescargas()%></li>
-                            <li class="list-group-item" style="color: black">Cantidad De Reproducciones:  <%= ((DtTemaLocal) temas.get(i)).getReproducciones()%></li>
-                            <li class="list-group-item" style="color: black"><input readonly onclick="Descarga('<%=((DtTemaLocal) temas.get(i)).getDirectorio()%>', '<%= ((DtTemaLocal) temas.get(i)).getArtista()%>', '<%=((DtTemaLocal) temas.get(i)).getAlbum()%>', '<%=((DtTemaLocal) temas.get(i)).getNombre()%>')" class="btn btn-info" id="btnDescargar" value="Descargar"></li>
+                            <li class="list-group-item" style="color: black; width: 250px">Cantidad De Descargas: <%= ((DtTemaLocal) temas.get(i)).getDescargas()%></li>
+                            <li class="list-group-item" style="color: black; width: 250px">Cantidad De Reproducciones:  <%= ((DtTemaLocal) temas.get(i)).getReproducciones()%></li>
+                            <li class="list-group-item" style="color: black; width: 250px"><input readonly onclick="Descarga('<%=((DtTemaLocal) temas.get(i)).getDirectorio()%>', '<%= ((DtTemaLocal) temas.get(i)).getArtista()%>', '<%=((DtTemaLocal) temas.get(i)).getAlbum()%>', '<%=((DtTemaLocal) temas.get(i)).getNombre()%>')" class="btn btn-info" id="btnDescargar" value="Descargar"></li>
                                 <%} else {%>   
-                            <li class="list-group-item" style="color: black">Sin Suscripcion</li>
+                            <li class="list-group-item" style="color: black; width: 250px">Sin Suscripcion</li>
                                 <% }
                                     }
                                 } else { %>
-                            <li class="list-group-item" style="color: black">Tema Remoto</li>
+                            <li class="list-group-item" style="color: black;width: 250px">Tema Remoto</li>
                                 <% }%>
                         </ul>
                     </div>
