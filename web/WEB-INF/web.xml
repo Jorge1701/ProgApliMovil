@@ -9,12 +9,12 @@
         <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet>
-        <servlet-name>PMovilService</servlet-name>
+        <servlet-name>PContadoresService</servlet-name>
         <servlet-class>com.sun.xml.ws.transport.http.servlet.WSServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet>
-        <servlet-name>PContadoresService</servlet-name>
+        <servlet-name>PMovilService</servlet-name>
         <servlet-class>com.sun.xml.ws.transport.http.servlet.WSServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
@@ -23,12 +23,12 @@
         <url-pattern>/PDownloadFileService</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>PMovilService</servlet-name>
-        <url-pattern>/PMovilService</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>PContadoresService</servlet-name>
         <url-pattern>/PContadoresService</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PMovilService</servlet-name>
+        <url-pattern>/PMovilService</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

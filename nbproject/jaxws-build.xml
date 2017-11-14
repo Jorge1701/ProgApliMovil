@@ -45,25 +45,6 @@
         <delete dir="${build.generated.sources.dir}/jax-ws/servicios"/>
         <delete dir="${build.generated.dir}/jax-wsCache/service/DownloadFile"/>
     </target>
-    <target name="wsimport-service-Movil" depends="wsimport-init">
-        <mkdir dir="${build.generated.dir}/jax-wsCache/service/Movil"/>
-        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/service/Movil" destdir="${build.generated.dir}/jax-wsCache/service/Movil" wsdl="${basedir}/${conf-dir}xml-resources/web-services/Movil/wsdl/localhost_1234/movil.wsdl" catalog="catalog.xml" extension="true" verbose="true" fork="false" xnocompile="true" xendorsed="true">
-            <depends file="${basedir}/${conf-dir}xml-resources/web-services/Movil/wsdl/localhost_1234/movil.wsdl"/>
-            <produces dir="${build.generated.dir}/jax-wsCache/service/Movil"/>
-        </wsimport>
-        <copy todir="${build.generated.sources.dir}/jax-ws">
-            <fileset dir="${build.generated.dir}/jax-wsCache/service/Movil">
-                <include name="**/*.java"/>
-            </fileset>
-        </copy>
-        <copy todir="${build.web.dir}/WEB-INF/wsdl/Movil">
-            <fileset dir="${basedir}/${conf-dir}xml-resources/web-services/Movil/wsdl/"/>
-        </copy>
-    </target>
-    <target name="wsimport-service-clean-Movil" depends="-init-project">
-        <delete dir="${build.generated.sources.dir}/jax-ws/servicios"/>
-        <delete dir="${build.generated.dir}/jax-wsCache/service/Movil"/>
-    </target>
     <target name="wsimport-service-Contadores" depends="wsimport-init">
         <mkdir dir="${build.generated.dir}/jax-wsCache/service/Contadores"/>
         <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/service/Contadores" destdir="${build.generated.dir}/jax-wsCache/service/Contadores" wsdl="${basedir}/${conf-dir}xml-resources/web-services/Contadores/wsdl/localhost_1234/contadores.wsdl" catalog="catalog.xml" extension="true" verbose="true" fork="false" xnocompile="true" xendorsed="true">
@@ -83,5 +64,24 @@
         <delete dir="${build.generated.sources.dir}/jax-ws/servicios"/>
         <delete dir="${build.generated.dir}/jax-wsCache/service/Contadores"/>
     </target>
-    <target name="wsimport-service-generate" depends="wsimport-service-DownloadFile, wsimport-service-Movil, wsimport-service-Contadores"/>
+    <target name="wsimport-service-Movil" depends="wsimport-init">
+        <mkdir dir="${build.generated.dir}/jax-wsCache/service/Movil"/>
+        <wsimport sourcedestdir="${build.generated.dir}/jax-wsCache/service/Movil" destdir="${build.generated.dir}/jax-wsCache/service/Movil" wsdl="${basedir}/${conf-dir}xml-resources/web-services/Movil/wsdl/localhost_1234/movil.wsdl" catalog="catalog.xml" extension="true" verbose="true" fork="false" xnocompile="true" xendorsed="true">
+            <depends file="${basedir}/${conf-dir}xml-resources/web-services/Movil/wsdl/localhost_1234/movil.wsdl"/>
+            <produces dir="${build.generated.dir}/jax-wsCache/service/Movil"/>
+        </wsimport>
+        <copy todir="${build.generated.sources.dir}/jax-ws">
+            <fileset dir="${build.generated.dir}/jax-wsCache/service/Movil">
+                <include name="**/*.java"/>
+            </fileset>
+        </copy>
+        <copy todir="${build.web.dir}/WEB-INF/wsdl/Movil">
+            <fileset dir="${basedir}/${conf-dir}xml-resources/web-services/Movil/wsdl/"/>
+        </copy>
+    </target>
+    <target name="wsimport-service-clean-Movil" depends="-init-project">
+        <delete dir="${build.generated.sources.dir}/jax-ws/servicios"/>
+        <delete dir="${build.generated.dir}/jax-wsCache/service/Movil"/>
+    </target>
+    <target name="wsimport-service-generate" depends="wsimport-service-DownloadFile, wsimport-service-Contadores, wsimport-service-Movil"/>
 </project>
