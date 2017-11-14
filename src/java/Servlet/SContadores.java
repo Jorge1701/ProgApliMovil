@@ -1,4 +1,4 @@
-package servlets;
+package Servlet;
 
 import Configuracion.Configuracion;
 import java.io.IOException;
