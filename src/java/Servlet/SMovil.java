@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package servlets;
+package Servlet;
 
 import Configuracion.Configuracion;
 import java.io.IOException;
@@ -70,6 +70,7 @@ public class SMovil extends HttpServlet {
 
             DtUsuario dtu = null;
             if (request.getSession().getAttribute("usuario") != null) {
+                log("a");
                 request.getSession().removeAttribute("usuario");
                 request.getRequestDispatcher("vistas/InicioSesion.jsp").forward(request, response);
                 return;
@@ -86,10 +87,11 @@ public class SMovil extends HttpServlet {
                             request.setAttribute("generos", (ArrayList) port.obtenerGeneros().getString());
                             request.setAttribute("artistas", (ArrayList) port.listarArtistas().getUsuarios());
                             request.getRequestDispatcher("vistas/Inicio.jsp").forward(request, response);
-                            break;
+                            return;
                         }
                     }
                 }else{
+                 log("l");
                 request.getRequestDispatcher("vistas/InicioSesion.jsp").forward(request, response);
                 return;
                 }
