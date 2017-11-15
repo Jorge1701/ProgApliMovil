@@ -39,7 +39,7 @@
             @media (max-width: 500px) { 
                 h1 {
                     height: 30px;
-                    font-size:20px;
+                    font-size:20 px;
                 }
             }
             h1 {
@@ -51,8 +51,6 @@
         </style>  
         <%
             DtUsuario user = (DtUsuario) request.getSession().getAttribute("usuario");
-            log(user.getNickname());
-
         %>
     </head>
 

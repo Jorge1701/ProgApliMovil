@@ -73,7 +73,7 @@ public class SMovil extends HttpServlet {
                 log("a");
                 request.getSession().removeAttribute("usuario");
                 request.getRequestDispatcher("vistas/InicioSesion.jsp").forward(request, response);
-                return;
+        
             } else {
                 Cookie[] todoLosCockies = request.getCookies();
                 if (todoLosCockies != null) {
@@ -87,17 +87,21 @@ public class SMovil extends HttpServlet {
                             request.setAttribute("generos", (ArrayList) port.obtenerGeneros().getString());
                             request.setAttribute("artistas", (ArrayList) port.listarArtistas().getUsuarios());
                             request.getRequestDispatcher("vistas/Inicio.jsp").forward(request, response);
-                            return;
+                     
                         }
                     }
+                   request.getRequestDispatcher("vistas/InicioSesion.jsp").forward(request, response);
+            
+                    
                 }else{
                  log("l");
                 request.getRequestDispatcher("vistas/InicioSesion.jsp").forward(request, response);
-                return;
+           
                 }
             }
 
         }else{
+            
         String accion = request.getParameter("accion");
 
         switch (accion) {

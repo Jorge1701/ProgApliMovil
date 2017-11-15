@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <jsp:include page="include  .html"/>
+        <jsp:include page="include.html"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Espotify</title>
 
@@ -27,7 +27,7 @@
             </div>  
             <div class="row "  >
                 <div class="col-lg-9 col-xs-10 col-sm-6 col-sm-offset-3 col-md-7 col-md-offset-1 col-xs-offset-1  col-lg-offset-3" >
-                    <td><h1 style="color: white" >Error!!!</h1></td>
+                    <td><h1 style="color: white" >Error 404: Sin Conexion Con El Servidor</h1></td>
                 </div>
             </div>  
 

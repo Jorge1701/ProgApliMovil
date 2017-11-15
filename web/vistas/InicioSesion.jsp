@@ -21,15 +21,17 @@
         <div class="col-lg-4 col-md-6 col-sm-8 col-xs-12">
 
             <div class="row "  >
-                <div class="col-lg-7 col-xs-10 col-sm-6 col-sm-offset-3 col-md-7 col-md-offset-1 col-xs-offset-1  col-lg-offset-3" >
-                    <td><img src="media/icono.png" class="center-block"  width="100" height="100" style="margin-top: 4px"></td>
+                <div class="col-lg-10 col-xs-11 col-sm-8 col-sm-offset-4 col-md-9 col-md-offset-2 col-xs-offset-3  col-lg-offset-4" >
+                    <td><img src="media/icono.png"   width="100" height="100" style="margin-top: 4px"></td>
+                </div>
+            </div>  
+            <div class="row "  >
+                <div class="col-lg-9 col-xs-10 col-sm-6 col-sm-offset-3 col-md-7 col-md-offset-1 col-xs-offset-1  col-lg-offset-3" >
                     <td><h1 style="color: white" >Iniciar Sesión</h1></td>
-               
                 </div>
             </div>  
 
-            
-            
+
             <form action="/WebMovil/SMovil" method="POST" id="iniciar">
                 <div class="input-group input-group-md" style="margin-top: 50px">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
