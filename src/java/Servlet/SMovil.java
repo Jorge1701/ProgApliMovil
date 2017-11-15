@@ -89,6 +89,8 @@ public class SMovil extends HttpServlet {
                             break;
                         }
                     }
+                    request.getRequestDispatcher("vistas/InicioSesion.jsp").forward(request, response);
+                    return;
                 } else {
                     request.getRequestDispatcher("vistas/InicioSesion.jsp").forward(request, response);
                     return;
