@@ -35,4 +35,12 @@
             30
         </session-timeout>
     </session-config>
+    <error-page>
+        <exception-type>javax.xml.ws.WebServiceException</exception-type>
+        <location>/vistas/500.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/vistas/404.jsp</location>
+    </error-page>
 </web-app>

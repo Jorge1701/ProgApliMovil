@@ -19,6 +19,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.xml.ws.soap.SOAPFaultException;
 import servicios.DtAlbumContenido;
 import servicios.DtArtista;
 import servicios.DtCliente;
@@ -67,13 +68,12 @@ public class SMovil extends HttpServlet {
             throws ServletException, IOException {
 
         if (request.getParameter("accion") == null) {
-
+            log("a");
             DtUsuario dtu = null;
             if (request.getSession().getAttribute("usuario") != null) {
-                log("a");
                 request.getSession().removeAttribute("usuario");
                 request.getRequestDispatcher("vistas/InicioSesion.jsp").forward(request, response);
-        
+                return;
             } else {
                 Cookie[] todoLosCockies = request.getCookies();
                 if (todoLosCockies != null) {
@@ -87,143 +87,138 @@ public class SMovil extends HttpServlet {
                             request.setAttribute("generos", (ArrayList) port.obtenerGeneros().getString());
                             request.setAttribute("artistas", (ArrayList) port.listarArtistas().getUsuarios());
                             request.getRequestDispatcher("vistas/Inicio.jsp").forward(request, response);
-                     
+                            break;
                         }
                     }
-                   request.getRequestDispatcher("vistas/InicioSesion.jsp").forward(request, response);
-            
-                    
-                }else{
-                 log("l");
-                request.getRequestDispatcher("vistas/InicioSesion.jsp").forward(request, response);
-           
+                    request.getRequestDispatcher("vistas/InicioSesion.jsp").forward(request, response);
+                    return;
+                } else {
+                    request.getRequestDispatcher("vistas/InicioSesion.jsp").forward(request, response);
+                    return;
                 }
             }
 
-        }else{
-            
-        String accion = request.getParameter("accion");
+        } else {
+            String accion = request.getParameter("accion");
 
-        switch (accion) {
-            case "error":
-                if (request.getParameter("mensaje") == null) {
-                    request.setAttribute("error", "Error desconocido");
-                    request.getRequestDispatcher("vistas/InicioSesion.jsp").forward(request, response);
-                } else {
-                    request.setAttribute("error", request.getParameter("mensaje"));
-                    request.getRequestDispatcher("vistas/InicioSesion.jsp").forward(request, response);
-                }
-
-                break;
-            case "consultarAlbum":
-                if (request.getSession().getAttribute("usuario") == null) {
-                    request.setAttribute("error", "Iniciar Sesion");
-                    request.getRequestDispatcher("vistas/InicioSesion.jsp").forward(request, response);
-                } else {
-                    String nickArtista = request.getParameter("nickArtista");
-                    if (port.getDataUsuario(nickArtista) == null) {
-                        request.setAttribute("mensaje_error", "El artista no existe");
-                        request.getRequestDispatcher("vistas/pagina_error.jsp").forward(request, response);
-                        return;
-                    }
-                    DtUsuario artista = (DtUsuario) port.getDataUsuario(nickArtista);
-                   
-                    String nomAlbum = URLDecoder.decode(request.getParameter("nomAlbum"), "UTF-8");
-                    DtAlbumContenido dtAlbum = null;
-                    try {
-                        dtAlbum = port.obtenerAlbumContenido(nickArtista, nomAlbum);
-                    } catch (UnsupportedOperationException e) {
-                        request.setAttribute("mensaje_error", "El artista " + nickArtista + " no tiene el album " + nomAlbum);
-                        request.getRequestDispatcher("vistas/pagina_error.jsp").forward(request, response);
-                        return;
-                    }
-                    if (dtAlbum == null) {
-                        request.setAttribute("mensaje_error", "El artista " + nickArtista + " no tiene el album " + nomAlbum);
-                        request.getRequestDispatcher("vistas/pagina_error.jsp").forward(request, response);
-                        return;
-
-                    }
-                    DtUsuario u =  port.getDataUsuario(((DtUsuario)request.getSession().getAttribute("usuario")).getNickname());
-                    DtSuscripcion sus = ((DtCliente)u).getActual();
-                   
-                   
-                    if( sus != null){
-                    request.setAttribute("Suscripcion", sus);
-                    }
-                    request.setAttribute("Album", dtAlbum);
-                    request.setAttribute("Artista", artista);
-                    request.getRequestDispatcher("/vistas/ConsultaAlbum.jsp").forward(request, response);
-
-                }
-                break;
-            case "Inicio":
-                request.setAttribute("generos", (ArrayList) port.obtenerGeneros().getString());
-                request.setAttribute("artistas", (ArrayList) port.listarArtistas().getUsuarios());
-                request.getRequestDispatcher("vistas/Inicio.jsp").forward(request, response);
-                break;
-            case "consultarGenero":
-                if (request.getParameter("genero") == null) {
-                    request.setAttribute("mensaje_error", "Faltan parámetros");
-                    request.getRequestDispatcher("vistas/pagina_error.jsp").forward(request, response);
-                } else {
-                    String genero = request.getParameter("genero");
-                    if (port.existeGenero(genero)) {
-                        if (request.getSession().getAttribute("usuario") != null) {
-                            DtUsuario dtu = (DtUsuario) request.getSession().getAttribute("usuario");
-                            if (dtu instanceof DtCliente) {
-                                request.setAttribute("suscripcion", ((DtCliente) dtu).getActual());
-                            }
-                        }
-                        if (port.listarLisReproduccion(genero) == null) {
-                            log("Lista");
-
-                        }
-                        if (port.listarAlbumesGenero(genero) == null) {
-                            log("Album");
-                        }
-                        request.setAttribute("genero", genero);
-                        request.setAttribute("albumes", (ArrayList) port.listarAlbumesGenero(genero).getAlbum());
-                        request.setAttribute("listas", (ArrayList) port.listarLisReproduccion(genero).getListas());
-                        request.getRequestDispatcher("vistas/Listado.jsp").forward(request, response);
+            switch (accion) {
+                case "error":
+                    if (request.getParameter("mensaje") == null) {
+                        request.setAttribute("error", "Error desconocido");
+                        request.getRequestDispatcher("vistas/InicioSesion.jsp").forward(request, response);
                     } else {
-                        request.setAttribute("mensaje_error", "El genero no existe");
-                        request.getRequestDispatcher("vistas/pagina_error.jsp").forward(request, response);
+                        request.setAttribute("error", request.getParameter("mensaje"));
+                        request.getRequestDispatcher("vistas/InicioSesion.jsp").forward(request, response);
                     }
-                }
-                break;
-            case "consultarArtista":
-                if (request.getParameter("nick") == null) {
-                    request.setAttribute("mensaje_error", "No se ingreso que usuario quiere consultar");
-                    request.getRequestDispatcher("vistas/pagina_error.jsp").forward(request, response);
-                    return;
-                }
 
-                String nickUs = "";
-                if (request.getParameter("nick") != null) {
-                    nickUs = request.getParameter("nick");
-                }
-                DtUsuario DtUs = port.getDataUsuario(nickUs);//iUsuario.getDataUsuario(nickUs);
-                if (DtUs == null) {
+                    break;
+                case "consultarAlbum":
+                    if (request.getSession().getAttribute("usuario") == null) {
+                        request.setAttribute("error", "Iniciar Sesion");
+                        request.getRequestDispatcher("vistas/InicioSesion.jsp").forward(request, response);
+                    } else {
+                        String nickArtista = request.getParameter("nickArtista");
+                        if (port.getDataUsuario(nickArtista) == null) {
+                            request.setAttribute("mensaje_error", "El artista no existe");
+                            request.getRequestDispatcher("vistas/error.jsp").forward(request, response);
+                            return;
+                        }
+                        DtUsuario artista = (DtUsuario) port.getDataUsuario(nickArtista);
+                        String nomAlbum = URLDecoder.decode(request.getParameter("nomAlbum"), "UTF-8");
+                        DtAlbumContenido dtAlbum = null;
+                        try {
+                            dtAlbum = port.obtenerAlbumContenido(nickArtista, nomAlbum);
+                        } catch (SOAPFaultException e) {
+                            request.setAttribute("mensaje_error", "El artista " + nickArtista + " no tiene el album " + nomAlbum);
+                            request.getRequestDispatcher("vistas/error.jsp").forward(request, response);
+                            return;
+                        }
+                        if (dtAlbum == null) {
+                            request.setAttribute("mensaje_error", "El artista " + nickArtista + " no tiene el album " + nomAlbum);
+                            request.getRequestDispatcher("vistas/error.jsp").forward(request, response);
+                            return;
 
-                    request.setAttribute("mensaje_error", "No existe el usuario " + nickUs);
-                    request.getRequestDispatcher("vistas/pagina_error.jsp").forward(request, response);
-                }
+                        }
+                        request.setAttribute("Album", dtAlbum);
+                        request.setAttribute("Artista", artista);
+                        request.getRequestDispatcher("/vistas/ConsultaAlbum.jsp").forward(request, response);
 
-                if (DtUs instanceof DtArtista) {
-                    DtPerfilArtista dtPerfilArtista = (DtPerfilArtista) port.obtenerPerfilArtista(nickUs);//iUsuario.obtenerPerfilArtista(nickUs);
-                    request.setAttribute("albumes", (ArrayList) dtPerfilArtista.getAlbumes());
-                    request.getRequestDispatcher("vistas/Listado.jsp").forward(request, response);
-                }
-                break;
-        }
+                    }
+                    break;
+                    
+                case "Inicio":
+                    request.setAttribute("generos", (ArrayList) port.obtenerGeneros().getString());
+                    request.setAttribute("artistas", (ArrayList) port.listarArtistas().getUsuarios());
+                    request.getRequestDispatcher("vistas/Inicio.jsp").forward(request, response);
+                    break;
+                case "consultarGenero":
+                    if (request.getParameter("genero") == null) {
+                        request.setAttribute("mensaje_error", "Faltan parámetros");
+                        request.getRequestDispatcher("vistas/error.jsp").forward(request, response);
+                    } else {
+                        String genero = request.getParameter("genero");
+                        if (port.existeGenero(genero)) {
+                            if (request.getSession().getAttribute("usuario") != null) {
+                                DtUsuario dtu = (DtUsuario) request.getSession().getAttribute("usuario");
+                                if (dtu instanceof DtCliente) {
+                                    request.setAttribute("suscripcion", ((DtCliente) dtu).getActual());
+                                }
+                            }
+                            if (port.listarLisReproduccion(genero) == null) {
+                                log("Lista");
+
+                            }
+                            if (port.listarAlbumesGenero(genero) == null) {
+                                log("Album");
+                            }
+                            request.setAttribute("genero", genero);
+                            request.setAttribute("albumes", (ArrayList) port.listarAlbumesGenero(genero).getAlbum());
+                            request.setAttribute("listas", (ArrayList) port.listarLisReproduccion(genero).getListas());
+                            request.getRequestDispatcher("vistas/Listado.jsp").forward(request, response);
+                        } else {
+                            request.setAttribute("mensaje_error", "El genero no existe");
+                            request.getRequestDispatcher("vistas/error.jsp").forward(request, response);
+                        }
+                    }
+                    break;
+                case "consultarArtista":
+                    if (request.getParameter("nick") == null) {
+                        request.setAttribute("mensaje_error", "No se ingreso que usuario quiere consultar");
+                        request.getRequestDispatcher("vistas/error.jsp").forward(request, response);
+                        return;
+                    }
+
+                    String nickUs = "";
+                    if (request.getParameter("nick") != null) {
+                        nickUs = request.getParameter("nick");
+                    }
+                    DtUsuario DtUs = port.getDataUsuario(nickUs);//iUsuario.getDataUsuario(nickUs);
+                    if (DtUs == null) {
+
+                        request.setAttribute("mensaje_error", "No existe el usuario " + nickUs);
+                        request.getRequestDispatcher("vistas/error.jsp").forward(request, response);
+                    }
+
+                    if (DtUs instanceof DtArtista) {
+                        DtPerfilArtista dtPerfilArtista = (DtPerfilArtista) port.obtenerPerfilArtista(nickUs);//iUsuario.obtenerPerfilArtista(nickUs);
+                        request.setAttribute("albumes", (ArrayList) dtPerfilArtista.getAlbumes());
+                        request.getRequestDispatcher("vistas/Listado.jsp").forward(request, response);
+                    }
+                    break;
+                default:
+                request.setAttribute("mensaje_error", "Recurso no encontrado");
+                request.getRequestDispatcher("vistas/error.jsp").forward(request, response);
+                return;
+            }
         }
     }
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         if (request.getParameter("accion") == null) {
             request.setAttribute("mensaje_error", "No hay una accion");
-            request.getRequestDispatcher("vistas/pagina_error.jsp").forward(request, response);
+            request.getRequestDispatcher("vistas/error.jsp").forward(request, response);
             return;
         }
         String accion = request.getParameter("accion");
@@ -233,7 +228,7 @@ public class SMovil extends HttpServlet {
 
                 if (request.getSession().getAttribute("usuario") != null) {
                     request.setAttribute("mensaje_error", "Ya hay un usuario logueado");
-                    request.getRequestDispatcher("vistas/pagina_error.jsp").forward(request, response);
+                    request.getRequestDispatcher("vistas/error.jsp").forward(request, response);
                     return;
                 }
                 if (request.getParameter("nickname") == null || request.getParameter("contrasenia") == null) {
@@ -288,13 +283,14 @@ public class SMovil extends HttpServlet {
             case "CerrarSesion":
                 if (request.getSession().getAttribute("usuario") == null) {
                     request.setAttribute("mensaje_error", "Debe haber un usuario logueado");
-                    request.getRequestDispatcher("vistas/pagina_error.jsp").forward(request, response);
+                    request.getRequestDispatcher("vistas/error.jsp").forward(request, response);
                     return;
                 }
                 request.getSession().removeAttribute("usuario");
                 request.getRequestDispatcher("SMovil").forward(request, response);
                 processRequest(request, response);
                 break;
+                            
         }
     }
 

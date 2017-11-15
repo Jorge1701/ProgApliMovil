@@ -21,15 +21,15 @@ public class Configuracion {
         propiedades = new HashMap<>();
 
         // Desde NetBeans
-        //String quitar = "build/web/WEB-INF/classes/Configuracion/Configuracion.class";
-        //String path = Configuracion.class.getResource("/Configuracion/Configuracion.class").getPath().replaceAll(quitar, "configuracion.properties");
+        String quitar = "build/web/WEB-INF/classes/Configuracion/Configuracion.class";
+        String path = Configuracion.class.getResource("/Configuracion/Configuracion.class").getPath().replaceAll(quitar, "configuracion.properties");
         //=============        
-         //Desde Script
-        String propertyHome = System.getenv("CATALINA_HOME");
-        if (null == propertyHome) {
-            propertyHome = System.getProperty("PROPERTY_HOME");
-        }
-        String path = propertyHome + "/properties/configuracion.properties";
+        // Desde Script
+        //String propertyHome = System.getenv("CATALINA_HOME");
+        //if (null == propertyHome) {
+        //    propertyHome = System.getProperty("PROPERTY_HOME");
+        //}
+        //String path = propertyHome + "/properties/configuracion.properties";
         try {
 
             BufferedReader br = new BufferedReader(new FileReader(new File(path)));

@@ -10,26 +10,28 @@
     <head>
         <jsp:include page="include  .html"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Espotify</title>
-
+        <title>Pagina de error</title>
+        <link rel="stylesheet" type="text/css" href="estilos/inicio.css">
+        <jsp:include page="../scripts/Inicio.html"/>
+        <jsp:include page="include.html"/>
     </head>
-    <body style="background-color: #2e6da4">
-
-
-        <div class="col-lg-4 col-md-3 col-sm-2 col-xs-1"></div>
-
-        <div class="col-lg-4 col-md-6 col-sm-8 col-xs-12">
-
-            <div class="row "  >
-                <div class="col-lg-10 col-xs-11 col-sm-8 col-sm-offset-4 col-md-9 col-md-offset-2 col-xs-offset-3  col-lg-offset-4" >
-                    <td><img src="media/icono.png"   width="100" height="100" style="margin-top: 4px"></td>
+    <body style="background-color: black">
+        <nav class="navbar navbar-inverse navbar-fixed-top"  style="background-color: black">
+            
+                        
+            <div class="table-responsive col-lg-10 col-md-10 col-md-offset-1 col-lg-offset-1" style=" border-color: transparent"  >
+                
+                 <div>
+                    <ul class="nav nav-pills" >
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" onclick="irInicio()" role="tab">Ir al Inicio</a>
+                        </li>
+                    </ul>
                 </div>
-            </div>  
-            <div class="row "  >
-                <div class="col-lg-9 col-xs-10 col-sm-6 col-sm-offset-3 col-md-7 col-md-offset-1 col-xs-offset-1  col-lg-offset-3" >
-                    <td><h1 style="color: white" >Error!!!</h1></td>
-                </div>
-            </div>  
-
+                <div>
+                    <h1 style="color: greenyellow"> <%= request.getAttribute("mensaje_error")%> </h1>
+                </div>    
+            </div>    
+        </nav>       
     </body>
 </html>
