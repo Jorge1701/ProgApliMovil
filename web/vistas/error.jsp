@@ -9,9 +9,28 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Pagina de error</title>
+        <link rel="stylesheet" type="text/css" href="estilos/inicio.css">
+        <jsp:include page="../scripts/Inicio.html"/>
+        <jsp:include page="include.html"/>
     </head>
-    <body>
-        <h1>pagina_error</h1>
+    <body style="background-color: black">
+        <nav class="navbar navbar-inverse navbar-fixed-top"  style="background-color: black">
+            
+                        
+            <div class="table-responsive col-lg-10 col-md-10 col-md-offset-1 col-lg-offset-1" style=" border-color: transparent"  >
+                
+                 <div>
+                    <ul class="nav nav-pills" >
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" onclick="irInicio()" role="tab">Ir al Inicio</a>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h1 style="color: greenyellow"> <%= request.getAttribute("mensaje_error")%> </h1>
+                </div>    
+            </div>    
+        </nav>       
     </body>
 </html>

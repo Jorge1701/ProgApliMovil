@@ -19,6 +19,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.xml.ws.soap.SOAPFaultException;
 import servicios.DtAlbumContenido;
 import servicios.DtArtista;
 import servicios.DtCliente;
@@ -119,7 +120,7 @@ public class SMovil extends HttpServlet {
                         String nickArtista = request.getParameter("nickArtista");
                         if (port.getDataUsuario(nickArtista) == null) {
                             request.setAttribute("mensaje_error", "El artista no existe");
-                            request.getRequestDispatcher("vistas/pagina_error.jsp").forward(request, response);
+                            request.getRequestDispatcher("vistas/error.jsp").forward(request, response);
                             return;
                         }
                         DtUsuario artista = (DtUsuario) port.getDataUsuario(nickArtista);
@@ -127,14 +128,14 @@ public class SMovil extends HttpServlet {
                         DtAlbumContenido dtAlbum = null;
                         try {
                             dtAlbum = port.obtenerAlbumContenido(nickArtista, nomAlbum);
-                        } catch (UnsupportedOperationException e) {
+                        } catch (SOAPFaultException e) {
                             request.setAttribute("mensaje_error", "El artista " + nickArtista + " no tiene el album " + nomAlbum);
-                            request.getRequestDispatcher("vistas/pagina_error.jsp").forward(request, response);
+                            request.getRequestDispatcher("vistas/error.jsp").forward(request, response);
                             return;
                         }
                         if (dtAlbum == null) {
                             request.setAttribute("mensaje_error", "El artista " + nickArtista + " no tiene el album " + nomAlbum);
-                            request.getRequestDispatcher("vistas/pagina_error.jsp").forward(request, response);
+                            request.getRequestDispatcher("vistas/error.jsp").forward(request, response);
                             return;
 
                         }
@@ -152,7 +153,7 @@ public class SMovil extends HttpServlet {
                 case "consultarGenero":
                     if (request.getParameter("genero") == null) {
                         request.setAttribute("mensaje_error", "Faltan parámetros");
-                        request.getRequestDispatcher("vistas/pagina_error.jsp").forward(request, response);
+                        request.getRequestDispatcher("vistas/error.jsp").forward(request, response);
                     } else {
                         String genero = request.getParameter("genero");
                         if (port.existeGenero(genero)) {
@@ -175,14 +176,14 @@ public class SMovil extends HttpServlet {
                             request.getRequestDispatcher("vistas/Listado.jsp").forward(request, response);
                         } else {
                             request.setAttribute("mensaje_error", "El genero no existe");
-                            request.getRequestDispatcher("vistas/pagina_error.jsp").forward(request, response);
+                            request.getRequestDispatcher("vistas/error.jsp").forward(request, response);
                         }
                     }
                     break;
                 case "consultarArtista":
                     if (request.getParameter("nick") == null) {
                         request.setAttribute("mensaje_error", "No se ingreso que usuario quiere consultar");
-                        request.getRequestDispatcher("vistas/pagina_error.jsp").forward(request, response);
+                        request.getRequestDispatcher("vistas/error.jsp").forward(request, response);
                         return;
                     }
 
@@ -194,7 +195,7 @@ public class SMovil extends HttpServlet {
                     if (DtUs == null) {
 
                         request.setAttribute("mensaje_error", "No existe el usuario " + nickUs);
-                        request.getRequestDispatcher("vistas/pagina_error.jsp").forward(request, response);
+                        request.getRequestDispatcher("vistas/error.jsp").forward(request, response);
                     }
 
                     if (DtUs instanceof DtArtista) {
@@ -203,6 +204,10 @@ public class SMovil extends HttpServlet {
                         request.getRequestDispatcher("vistas/Listado.jsp").forward(request, response);
                     }
                     break;
+                default:
+                request.setAttribute("mensaje_error", "Recurso no encontrado");
+                request.getRequestDispatcher("vistas/error.jsp").forward(request, response);
+                return;
             }
         }
     }
@@ -212,7 +217,7 @@ public class SMovil extends HttpServlet {
             throws ServletException, IOException {
         if (request.getParameter("accion") == null) {
             request.setAttribute("mensaje_error", "No hay una accion");
-            request.getRequestDispatcher("vistas/pagina_error.jsp").forward(request, response);
+            request.getRequestDispatcher("vistas/error.jsp").forward(request, response);
             return;
         }
         String accion = request.getParameter("accion");
@@ -222,7 +227,7 @@ public class SMovil extends HttpServlet {
 
                 if (request.getSession().getAttribute("usuario") != null) {
                     request.setAttribute("mensaje_error", "Ya hay un usuario logueado");
-                    request.getRequestDispatcher("vistas/pagina_error.jsp").forward(request, response);
+                    request.getRequestDispatcher("vistas/error.jsp").forward(request, response);
                     return;
                 }
                 if (request.getParameter("nickname") == null || request.getParameter("contrasenia") == null) {
@@ -277,13 +282,14 @@ public class SMovil extends HttpServlet {
             case "CerrarSesion":
                 if (request.getSession().getAttribute("usuario") == null) {
                     request.setAttribute("mensaje_error", "Debe haber un usuario logueado");
-                    request.getRequestDispatcher("vistas/pagina_error.jsp").forward(request, response);
+                    request.getRequestDispatcher("vistas/error.jsp").forward(request, response);
                     return;
                 }
                 request.getSession().removeAttribute("usuario");
                 request.getRequestDispatcher("SMovil").forward(request, response);
                 processRequest(request, response);
                 break;
+                            
         }
     }
 
