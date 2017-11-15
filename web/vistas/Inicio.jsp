@@ -87,7 +87,7 @@
                         ArrayList<String> generos = (ArrayList<String>) request.getAttribute("generos");
                         if (generos.size() == 0) {
                             // Mostrar mensaje si no hay generos
-                            out.print("<div class=\"panel panel-default\"><h1>No hay generos</h1></div>");
+                            out.print("<div class=\"panel panel-default col-lg-3 col-xs-6 col-sm-6 col-md-6\"><h1>No hay generos</h1></div>");
                         } else {
                             //  Separador para que haya un margen arriba
                             out.print("<div class=\"row\"><div style=\"margin-top: 20px\"></div></div>");
@@ -117,7 +117,7 @@
 
                         if (artistas.size() == 0) {
                             // Mostrar mensaje si no hay artistas
-                            out.print("<div class=\"panel panel-default\"><h1>No hay artistas</h1></div>");
+                            out.print("<div class=\"panel panel-default col-lg-3 col-xs-6 col-sm-6 col-md-6\"><h1>No hay artistas</h1></div>");
                         } else {
                             // Separador para que haya un margen arriba
                             out.print("<div class=\"row\"><div style=\"margin-top: 20px\"></div></div>");

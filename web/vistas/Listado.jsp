@@ -86,7 +86,7 @@
                 <div id="albumes" class ="tab-pane fade in active">              
                     <%  ArrayList<DtAlbum> albumes = (ArrayList<DtAlbum>) request.getAttribute("albumes");
                         if (albumes.size() == 0) {
-                            out.print("<div class=\"panel panel-default\"><h1>No hay Albumes</h1></div>");
+                            out.print("<div class=\"panel panel-default col-lg-3 col-xs-6 col-sm-6 col-md-6\"><h1>No hay Albumes</h1></div>");
                         } else {
                             out.print("<div class=\"row\"><div style=\"margin-top: 20px\"></div></div>");
                             for (int i = 0; i < albumes.size(); i++) {

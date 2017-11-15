@@ -1,4 +1,4 @@
-<%-- 
+<%-- c
     Document   : ConsultaAlbum
     Created on : 27/10/2017, 04:16:18 PM
     Author     : Brian
@@ -33,7 +33,7 @@
     <body style="background-color: black" >
         <%
             DtUsuario user = (DtUsuario) request.getSession().getAttribute("usuario");
-            DtSuscripcion actual = (DtSuscripcion) request.getAttribute("Suscripcion");
+            DtSuscripcion actual =  ((DtCliente)user).getActual();
             DtAlbumContenido albumes = (DtAlbumContenido) request.getAttribute("Album");
             DtUsuario artista = (DtUsuario) request.getAttribute("Artista");
             DtAlbum inf = (DtAlbum) albumes.getInfo();
