@@ -33,7 +33,7 @@
     <body style="background-color: black" >
         <%
             DtUsuario user = (DtUsuario) request.getSession().getAttribute("usuario");
-            DtSuscripcion actual = ((DtCliente) user).getActual();
+            DtSuscripcion actual = (DtSuscripcion) request.getAttribute("Suscripcion");
             DtAlbumContenido albumes = (DtAlbumContenido) request.getAttribute("Album");
             DtUsuario artista = (DtUsuario) request.getAttribute("Artista");
             DtAlbum inf = (DtAlbum) albumes.getInfo();

@@ -127,6 +127,7 @@ public class SMovil extends HttpServlet {
                         return;
                     }
                     DtUsuario artista = (DtUsuario) port.getDataUsuario(nickArtista);
+                   
                     String nomAlbum = URLDecoder.decode(request.getParameter("nomAlbum"), "UTF-8");
                     DtAlbumContenido dtAlbum = null;
                     try {
@@ -141,6 +142,13 @@ public class SMovil extends HttpServlet {
                         request.getRequestDispatcher("vistas/pagina_error.jsp").forward(request, response);
                         return;
 
+                    }
+                    DtUsuario u =  port.getDataUsuario(((DtUsuario)request.getSession().getAttribute("usuario")).getNickname());
+                    DtSuscripcion sus = ((DtCliente)u).getActual();
+                   
+                   
+                    if( sus != null){
+                    request.setAttribute("Suscripcion", sus);
                     }
                     request.setAttribute("Album", dtAlbum);
                     request.setAttribute("Artista", artista);
