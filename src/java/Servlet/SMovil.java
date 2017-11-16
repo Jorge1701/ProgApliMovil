@@ -145,7 +145,7 @@ public class SMovil extends HttpServlet {
 
                     }
                     break;
-                    
+
                 case "Inicio":
                     request.setAttribute("generos", (ArrayList) port.obtenerGeneros().getString());
                     request.setAttribute("artistas", (ArrayList) port.listarArtistas().getUsuarios());
@@ -201,14 +201,15 @@ public class SMovil extends HttpServlet {
 
                     if (DtUs instanceof DtArtista) {
                         DtPerfilArtista dtPerfilArtista = (DtPerfilArtista) port.obtenerPerfilArtista(nickUs);//iUsuario.obtenerPerfilArtista(nickUs);
+                        request.setAttribute("artistaNombre", dtPerfilArtista.getInfo().getNombre() + " " + dtPerfilArtista.getInfo().getApellido());
                         request.setAttribute("albumes", (ArrayList) dtPerfilArtista.getAlbumes());
                         request.getRequestDispatcher("vistas/Listado.jsp").forward(request, response);
                     }
                     break;
                 default:
-                request.setAttribute("mensaje_error", "Recurso no encontrado");
-                request.getRequestDispatcher("vistas/error.jsp").forward(request, response);
-                return;
+                    request.setAttribute("mensaje_error", "Recurso no encontrado");
+                    request.getRequestDispatcher("vistas/error.jsp").forward(request, response);
+                    return;
             }
         }
     }
@@ -251,8 +252,7 @@ public class SMovil extends HttpServlet {
                         } else {
                             response.setContentType("text/plain");
                             response.setCharacterEncoding("UTF-8");
-                            response.getWriter().write("Error: Debe Ser Un Cliente");
-                            return;
+                            response.getWriter().write("Solo_los_clientes_pueden_acceder");
                         }
                         if (request.getParameter("recordar").equals("true")) {
                             Cookie nick = new Cookie("nick", dtu.getNickname());
@@ -290,7 +290,7 @@ public class SMovil extends HttpServlet {
                 request.getRequestDispatcher("SMovil").forward(request, response);
                 processRequest(request, response);
                 break;
-                            
+
         }
     }
 

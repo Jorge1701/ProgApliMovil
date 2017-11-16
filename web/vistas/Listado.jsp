@@ -82,11 +82,28 @@
                 </div>
             </div>
             <!-- Tab panes -->
+
+            <% String artistaNombre = (String) request.getAttribute("artistaNombre");
+                if (artistaNombre != null) {
+                    out.print("<div class=\"col-lg-12 col-xs-12 col-sm-12 col-md-12\">");
+                    out.print("<h2 class=\"text-center\" style=\"color: whitesmoke;\">" + artistaNombre + "</h2>");
+                    out.print("</div>");
+                }
+            %>
+
+            <% String genero = (String) request.getAttribute("genero");
+                if (genero != null) {
+                    out.print("<div class=\"col-lg-12 col-xs-12 col-sm-12 col-md-12\">");
+                    out.print("<h2 class=\"text-center\" style=\"color: whitesmoke;\">" + genero + "</h2>");
+                    out.print("</div>");
+                }
+            %>
             <div class="tab-content">
                 <div id="albumes" class ="tab-pane fade in active">              
                     <%  ArrayList<DtAlbum> albumes = (ArrayList<DtAlbum>) request.getAttribute("albumes");
                         if (albumes.size() == 0) {
-                            out.print("<div class=\"panel panel-default\"><h1>No hay Albumes</h1></div>");
+                            out.print("<div class=\"row\"><div style=\"margin-top: 20px\"></div></div>");
+                            out.print("<h2 class=\"panel panel-default; text-center\" >No hay albumes</h2>");
                         } else {
                             out.print("<div class=\"row\"><div style=\"margin-top: 20px\"></div></div>");
                             for (int i = 0; i < albumes.size(); i++) {
