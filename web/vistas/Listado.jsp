@@ -90,6 +90,7 @@
                         } else {
                             out.print("<div class=\"row\"><div style=\"margin-top: 20px\"></div></div>");
                             for (int i = 0; i < albumes.size(); i++) {
+                         
                                 if (i == 0 || i % 4 == 0) {
                                     if (i != 0) {
                                         out.print("</div>");
@@ -101,6 +102,7 @@
                                 out.print("<h1 class=\"text-center\" >" + albumes.get(i).getNombre() + "</h1>");
                                 out.print("</div>");
                                 out.print("</div>");
+                       
                             }
                             out.print("</div>");
                         }%>

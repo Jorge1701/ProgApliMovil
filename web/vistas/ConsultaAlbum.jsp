@@ -79,7 +79,9 @@
         <div class="table-responsive col-lg-10 col-md-10 col-md-offset-1 col-lg-offset-1" style=" border-color: transparent"  >
             <div class="panel-group" >
                 <div class="panel panel-default" >
-                    <% for (int i = 0; i < temas.size(); i++) {%>
+                    <% for (int i = 0; i < temas.size(); i++) { 
+                         
+                    %>
                     <div class="panel" style="background-color: black;border-bottom-width: 1px; border-bottom-color:white "  >
                         <div class="row"> <div class="panel-heading">
                                 <h2 class="panel-title col-lg-11 col-xs-10 col-md-11 .col-xl-11" style="color: whitesmoke"><%=temas.get(i).getNombre()%> </h2>
@@ -103,13 +105,13 @@
                                 <%} else {%>   
                             <li class="list-group-item" style="color: black; width: 250px">Sin Suscripcion</li>
                                 <% }
-                                    }
+                                    
                                 } else { %>
                             <li class="list-group-item" style="color: black;width: 250px">Tema Remoto</li>
                                 <% }%>
                         </ul>
                     </div>
-                    <% }%>
+                    <% }}%>
                 </div>
             </div>
         </div>
