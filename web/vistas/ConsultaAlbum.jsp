@@ -33,7 +33,7 @@
     <body style="background-color: black" >
         <%
             DtUsuario user = (DtUsuario) request.getSession().getAttribute("usuario");
-            DtSuscripcion actual =  ((DtCliente)user).getActual();
+            DtSuscripcion actual = ((DtCliente) user).getActual();
             DtAlbumContenido albumes = (DtAlbumContenido) request.getAttribute("Album");
             DtUsuario artista = (DtUsuario) request.getAttribute("Artista");
             DtAlbum inf = (DtAlbum) albumes.getInfo();
@@ -68,10 +68,13 @@
             </div>
 
             <div class="row "  >
-                <div class="col-lg-12 col-xs-6 col-sm-6 col-md-6 col-md-offset-5 col-xs-offset-3 col-sm-offset-4 col-lg-offset-5" >
-                    <td><h2 style="color: whitesmoke"><%= nombre%> <%= apellido%></h2></td>
-                    <td><h2 style="color: whitesmoke"><%= nombreAlbum%>,<%= anioCreacion%> </h2></td>
-                    <td><h2 style="color: whitesmoke">Generos: <% for (int i = 0; i < Generos.size(); i++) {%><%= Generos.get(i)%><%}%></h2></td>
+                <div class="col-lg-12 col-xs-12 col-sm-12 col-md-12" >
+                    <td><h2 class="text-center" style="color: whitesmoke"><%= nombre%> <%= apellido%></h2></td
+                    <td><br></td>
+                    <td><h4 class="text-center" style="color: whitesmoke"><%= nombreAlbum%></h4></td>
+                    <td><br></td>
+                    <td><h5 class="text-center" style="color: whitesmoke">Año: <%= anioCreacion%></h5></td>
+                    <td><h5 class="text-center" style="color: whitesmoke">Géneros: | <% for (int i = 0; i < Generos.size(); i++) {%><%= Generos.get(i)+" | "%><%}%></h5></td>
                 </div>
             </div>          
         </div> 
