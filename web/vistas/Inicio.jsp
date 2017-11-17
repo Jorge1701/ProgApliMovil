@@ -17,8 +17,25 @@
         <jsp:include page="../scripts/Inicio.html"/>
         <jsp:include page="include.html"/>
         <style>
+            .hide-scroll {
+                overflow: hidden;
+            }
+            .viewport {
+                overflow: auto;
 
+                /* Make sure the inner div is not larger than the container
+                 * so that we have room to scroll.
+                 */
+                max-height: 100%;
 
+                /* Pick an arbitrary margin/padding that should be bigger
+                 * than the max width of all the scroll bars across
+                 * the devices you are targeting.
+                 * padding = -margin
+                 */
+                margin-right: -100px;
+                padding-right: 100px;
+            }
             @media (max-width: 700px) { 
                 ul {
                     list-style-type: none;
@@ -54,8 +71,9 @@
         %>
     </head>
 
-    <body style="background-color: black">
+    <body style="background-color: black" >
         <!-- Static navbar -->
+        
         <nav class="navbar navbar-inverse navbar-fixed-top"  style="background-color: black">
             <div class="container-fluid">
                 <div class="navbar-header">
@@ -68,6 +86,7 @@
                     <a class="navbar-brand" href="#" style="color: greenyellow">Bienvenido <%= user.getNickname()%></a>
                 </div>
                 <!-- Nav tabs -->
+             
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul class="nav nav-pills" >
                         <li class="nav-item">
@@ -144,6 +163,6 @@
                 </div>
             </div>
         </nav>
-
+     
     </body>
 </html>

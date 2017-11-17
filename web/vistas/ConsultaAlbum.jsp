@@ -23,10 +23,6 @@
         <jsp:include page="../scripts/Inicio.html"/>
         <jsp:include page="include.html"/>
         <style>           
-
-
-
-
         </style>
 
     </head>
@@ -74,7 +70,7 @@
                     <td><h4 class="text-center" style="color: whitesmoke"><%= nombreAlbum%></h4></td>
                     <td><br></td>
                     <td><h5 class="text-center" style="color: whitesmoke">Año: <%= anioCreacion%></h5></td>
-                    <td><h5 class="text-center" style="color: whitesmoke">Géneros: | <% for (int i = 0; i < Generos.size(); i++) {%><%= Generos.get(i)+" | "%><%}%></h5></td>
+                    <td><h5 class="text-center" style="color: whitesmoke">Géneros: | <% for (int i = 0; i < Generos.size(); i++) {%><%= Generos.get(i) + " | "%><%}%></h5></td>
                 </div>
             </div>          
         </div> 
@@ -82,8 +78,7 @@
         <div class="table-responsive col-lg-10 col-md-10 col-md-offset-1 col-lg-offset-1" style=" border-color: transparent"  >
             <div class="panel-group" >
                 <div class="panel panel-default" >
-                    <% for (int i = 0; i < temas.size(); i++) { 
-                         
+                    <% for (int i = 0; i < temas.size(); i++) {
                     %>
                     <div class="panel" style="background-color: black;border-bottom-width: 1px; border-bottom-color:white "  >
                         <div class="row"> <div class="panel-heading">
@@ -108,17 +103,18 @@
                                 <%} else {%>   
                             <li class="list-group-item" style="color: black; width: 250px">Sin Suscripcion</li>
                                 <% }
-                                    
-                                } else { %>
-                            <li class="list-group-item" style="color: black;width: 250px">Tema Remoto</li>
-                                <% }%>
+                                    }%>
+                                <%} else {%>
+                            <li class="list-group-item" style="color: black;width: 250px"><button type="button" class="btn btn-default" aria-label="Left Align">
+                                    <span class="glyphicon glyphicon-play-circle" aria-hidden="true"  onclick="reproducirRemoto('<%= ((DtTemaRemoto) temas.get(i)).getUrl()%>', '<%= ((DtTemaRemoto) temas.get(i)).getArtista().replace("'", "\\'")%>', '<%= ((DtTemaRemoto) temas.get(i)).getAlbum().replace("'", "\\'")%>', '<%= ((DtTemaRemoto) temas.get(i)).getNombre().replace("'", "\\'")%>')"></span></button></li>
+                                    <%}%>
                         </ul>
                     </div>
-                    <% }}%>
+                    <%}%>
+
                 </div>
             </div>
         </div>
-
     </nav>
 
 </body>
