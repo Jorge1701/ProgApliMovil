@@ -33,6 +33,21 @@
         rep(nickArt, nomAlbum, nomTema);
     }
 
+
+    function rep(nicArt, nomAlbum, nomTema) {
+        $.ajax({
+            type: "POST",
+            url: "/WebMovil/SContadores",
+            data: {
+                "accion": "reproducir",
+                "nickArt": encodeURI(nicArt),
+                "nomAlbum": encodeURI(nomAlbum),
+                "nomTema": encodeURI(nomTema)
+            }
+        });
+
+    }
+
     function irInicio() {
         window.location = "/WebMovil/SMovil?accion=Inicio";
     }
