@@ -42,7 +42,7 @@
             int anioCreacion = inf.getAnio();
         %>
 
-        <nav class="navbar navbar-inverse navbar-fixed-top"  style="background-color: black">
+        <nav class="navbar navbar-inverse navbar-fixed-top"  style="background-color: black; padding-top: 15px">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -62,18 +62,22 @@
                     </ul>
                 </div>
             </div>
+        </nav>
 
-            <div class="row "  >
-                <div class="col-lg-12 col-xs-12 col-sm-12 col-md-12" >
-                    <td><h2 class="text-center" style="color: whitesmoke"><%= nombre%> <%= apellido%></h2></td
-                    <td><br></td>
-                    <td><h4 class="text-center" style="color: whitesmoke"><%= nombreAlbum%></h4></td>
-                    <td><br></td>
-                    <td><h5 class="text-center" style="color: whitesmoke">Año: <%= anioCreacion%></h5></td>
-                    <td><h5 class="text-center" style="color: whitesmoke">Géneros: | <% for (int i = 0; i < Generos.size(); i++) {%><%= Generos.get(i) + " | "%><%}%></h5></td>
-                </div>
-            </div>          
-        </div> 
+        <div class="row "  >
+
+
+            <br><br><br>
+            <td><h2 class="text-center" style="color: whitesmoke"><%= nombre%> <%= apellido%></h2></td>
+            <br>
+            <td><h4 class="text-center" style="color: whitesmoke"><%= nombreAlbum%></h4></td>
+            <br>
+            <td><h5 class="text-center" style="color: whitesmoke">Año: <%= anioCreacion%></h5>>
+            <td><h5 class="text-center" style="color: whitesmoke">Géneros: | <% for (int i = 0; i < Generos.size(); i++) {%><%= Generos.get(i) + " | "%><%}%></h5></td>
+
+
+        </div>          
+
         <%-- Temas --%>
         <div class="table-responsive col-lg-10 col-md-10 col-md-offset-1 col-lg-offset-1" style=" border-color: transparent"  >
             <div class="panel-group" >
@@ -81,14 +85,15 @@
                     <% for (int i = 0; i < temas.size(); i++) {
                     %>
                     <div class="panel" style="background-color: black;border-bottom-width: 1px; border-bottom-color:white "  >
-                        <div class="row"> <div class="panel-heading">
+                        <div class="row"> 
+                            <div class="panel-heading">
                                 <h2 class="panel-title col-lg-11 col-xs-10 col-md-11 .col-xl-11" style="color: whitesmoke"><%=temas.get(i).getNombre()%> </h2>
                                 <a class="col-lg-1 " data-toggle="collapse"  href="#<%=i%>" >
                                     <span class="glyphicon glyphicon-plus  "></span></a>     
                             </div>
                         </div>
                     </div>
-                    <div id="<%= i%>" class="panel-collapse collapse" >
+                    <div id="<%=i%>" class="panel-collapse collapse">
                         <ul class="list-group"  >
                             <li class="list-group-item" style="color: black; width: 250px">Duracion: <%= temas.get(i).getDuracion().getHoras()%>:<%= temas.get(i).getDuracion().getMinutos()%>:<%= temas.get(i).getDuracion().getSegundos()%></li>
                             <li class="list-group-item" style="color: black; width: 250px">Ubicacion: <%= temas.get(i) instanceof DtTemaLocal ? ((DtTemaLocal) temas.get(i)).getDirectorio() : ((DtTemaRemoto) temas.get(i)).getUrl()%></li>
@@ -115,7 +120,5 @@
                 </div>
             </div>
         </div>
-    </nav>
-
-</body>
+    </body>
 </html>
